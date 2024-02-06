@@ -1,5 +1,7 @@
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24"></main>
+    <main className="flex flex-col gap-4">
+      <div className="flex flex-col w-full max-w-screen-sm">Hello world!</div>
+    </main>
   );
 }
