@@ -13,7 +13,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className="text-xl">
+        <main className="flex flex-col gap-4 items-center">
+          <div className="flex flex-col w-full max-w-screen-sm p-5">
+            {children}
+          </div>
+        </main>
+      </body>
     </html>
   );
 }
