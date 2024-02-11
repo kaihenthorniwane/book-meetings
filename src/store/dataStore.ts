@@ -1,20 +1,20 @@
-type EventTime = {
+type ServerEventTime = {
   start: Date;
   end: Date;
   isBooked: boolean;
 };
 
-type Event = {
+type ServerEvent = {
   id: string;
   name: string;
   tagline: string;
   description: string;
   image: string;
   date: Date;
-  times: EventTime[];
+  times: ServerEventTime[];
 };
 
-let events: Event[] = [
+let events: ServerEvent[] = [
   {
     id: "event-1",
     name: "Kickstart with React: Personal Intro",
@@ -81,15 +81,19 @@ let events: Event[] = [
   },
 ];
 
-let userEvents: Event[] = [];
+let userEvents: ServerEvent[] = [];
 
 // function to get events
 export const getEvents = () => {
   return events;
 };
 
-export const getEventUsingID = (id: string): Event | { error: string } => {
-  const foundEvent: Event | undefined = events.find((event) => event.id === id);
+export const getEventUsingID = (
+  id: string
+): ServerEvent | { error: string } => {
+  const foundEvent: ServerEvent | undefined = events.find(
+    (event) => event.id === id
+  );
   if (foundEvent) {
     return foundEvent;
   } else {
@@ -102,8 +106,10 @@ export const getUserEvents = () => {
   return events;
 };
 
-export const getUserEventUsingID = (id: string): Event | { error: string } => {
-  const foundEvent: Event | undefined = userEvents.find(
+export const getUserEventUsingID = (
+  id: string
+): ServerEvent | { error: string } => {
+  const foundEvent: ServerEvent | undefined = userEvents.find(
     (event) => event.id === id
   );
   if (foundEvent) {
@@ -113,6 +119,6 @@ export const getUserEventUsingID = (id: string): Event | { error: string } => {
   }
 };
 
-export const addUserevent = (item: Event) => {
+export const addUserevent = (item: ServerEvent) => {
   events.push(item);
 };
