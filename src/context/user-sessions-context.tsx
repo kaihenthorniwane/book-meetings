@@ -1,6 +1,6 @@
 import { createContext, useReducer, type ReactNode } from "react";
 
-type EventTime = {
+export type EventTime = {
   start: Date;
   end: Date;
   isBooked: boolean;

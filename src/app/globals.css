@@ -4,4 +4,8 @@
 @tailwind utilities;
 
 :root {
+  --Brand-Black-RGB: 25, 21, 75;
+  --Brand-Black: rgb(var(--Brand-Black-RGB));
+  --Brand-White-RGB: 255, 255, 255;
+  --Brand-White: rgb(var(--Brand-White-RGB));
 }

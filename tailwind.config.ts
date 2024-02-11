@@ -7,9 +7,17 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    colors: {
+      brandBlack: "var(--Brand-Black)",
+      brandWhite: "var(--Brand-White)",
+    },
     extend: {
       fontFamily: {
-        body: ["Indivisible", "sans-serif"],
+        body: ["indivisible", "sans-serif"],
+      },
+      backgroundImage: {
+        "event-page-gradient":
+          "linear-gradient(0deg, rgba(var(--Brand-White-RGB), 1) 0%, rgba(var(--Brand-White-RGB), 0.744466) 48.5%, rgba(var(--Brand-White-RGB), 0.485) 74%, rgba(var(--Brand-White-RGB), 0) 100%)",
       },
     },
   },
