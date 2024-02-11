@@ -16,7 +16,7 @@ type ServerEvent = {
 
 let events: ServerEvent[] = [
   {
-    id: "event-1",
+    id: "event-0",
     name: "Kickstart with React: Personal Intro",
     tagline: "Tailored guidance for total beginners in React.",
     description:

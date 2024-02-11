@@ -48,8 +48,8 @@ export default async function Page({ params }: { params: { id: string } }) {
           <div className="bg-event-page-gradient h-36" />
         </div>
         <div className="bg-brandWhite px-5">
-          <div className="flex flex-col gap-8 -mt-12">
-            <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-9 -mt-12">
+            <div className="flex flex-col gap-5">
               <div className="text-4xl">{parsedData.name}</div>
               <div className="flex gap-3 font-medium">
                 <div className="flex gap-2 items-center leading-none">
