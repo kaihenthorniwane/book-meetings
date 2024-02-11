@@ -21,7 +21,8 @@ let events: ServerEvent[] = [
     tagline: "Tailored guidance for total beginners in React.",
     description:
       "Starting with React can be daunting.\n\nYet, with the right guidance, it can be an exhilarating journey.\n\nIn this session, we will begin by demystifying React's core philosophy.\n\nWhy was React created?\n\nWhat problems does it solve in the world of web development?\n\nTogether, we'll delve into the virtual DOM, JSX, and component-based architecture.\n\nNo need to worry about the jargon; I'll break everything down step by step.\n\nWe'll touch on the importance of unidirectional data flow and the component lifecycle.\n\nWe'll set up a new React project together.\n\nBy the end of our session, you will have a clear understanding and a roadmap tailored just for you, to aid your React journey.",
-    image: "url-to-your-image",
+    image:
+      "https://cdn.midjourney.com/62a61d6f-41c8-491b-89e7-502ad76b1b43/0_0.webp",
     date: new Date("2023-10-31"),
     times: [
       {
@@ -37,7 +38,8 @@ let events: ServerEvent[] = [
     tagline: "Understanding the core components of React.",
     description:
       "React's power lies in its simplicity and flexibility.\n\nIn this session, we explore two fundamental concepts: state and props.\n\nHow do these concepts help manage data and UI consistency?\n\nWe'll dive deep into stateful vs. stateless components and how props facilitate parent-child communication.\n\nPractical examples will guide us through effective data handling.\n\nBy the end, you'll grasp how to create dynamic, interactive web applications with React.",
-    image: "url-to-another-image",
+    image:
+      "https://cdn.midjourney.com/62a61d6f-41c8-491b-89e7-502ad76b1b43/0_0.webp",
     date: new Date("2023-11-07"),
     times: [
       {
@@ -53,7 +55,8 @@ let events: ServerEvent[] = [
     tagline: "Leverage TypeScript for better development experience.",
     description:
       "TypeScript adds a powerful type system on top of JavaScript.\n\nIt enhances React development by ensuring type safety, reducing runtime errors.\n\nIn this session, we'll start with TypeScript basics: interfaces, types, and generics.\n\nHow can these features improve your React components and hooks?\n\nWe'll integrate TypeScript in a React project, highlighting best practices.\n\nExperience how TypeScript transforms the development process, making it more robust and maintainable.",
-    image: "url-to-yet-another-image",
+    image:
+      "https://cdn.midjourney.com/62a61d6f-41c8-491b-89e7-502ad76b1b43/0_0.webp",
     date: new Date("2023-11-14"),
     times: [
       {
@@ -69,7 +72,8 @@ let events: ServerEvent[] = [
     tagline: "Unlocking React's full potential with Hooks.",
     description:
       "React Hooks revolutionized how we work with React, making code more reusable and components more compact.\n\nThis session covers the basics: useState, useEffect, useContext, and more.\n\nHow do Hooks simplify state management and side effects?\n\nWe'll explore custom Hooks, showcasing their power in building your own abstractions.\n\nPractical exercises will help solidify your understanding, preparing you to use Hooks in your projects effectively.",
-    image: "url-to-different-image",
+    image:
+      "https://cdn.midjourney.com/62a61d6f-41c8-491b-89e7-502ad76b1b43/0_0.webp",
     date: new Date("2023-11-21"),
     times: [
       {
