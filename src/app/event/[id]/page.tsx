@@ -1,13 +1,15 @@
 import IconCalendarSmall from "@/components/icons/IconCalendarSmall";
 import IconClockSmall from "@/components/icons/IconClockSmall";
 import { type Event, type EventTime } from "@/context/user-sessions-context";
+import { getEventUsingID } from "@/store/dataStore";
 
 export default async function Page({ params }: { params: { id: string } }) {
-  const eventData = await fetch(
-    process.env.VERCEL_URL + "/api/get-event-by-id/?id=" + params.id
-  );
+  const eventData = getEventUsingID(params.id);
+  if ("error" in eventData) {
+    return <>An error occured</>;
+  }
+  const parsedData: Event = eventData;
 
-  const parsedData: Event = await eventData.json();
   const date: Date = new Date(parsedData.date);
   const formattedDate: string = date.toLocaleDateString("en-US", {
     year: "numeric",
