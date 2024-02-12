@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { Event } from "@/context/user-sessions-context";
 import Link from "next/link";
 import DefaultLayout from "@/components/layouts/DefaultLayout";

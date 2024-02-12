@@ -1,9 +1,9 @@
-import IconCalendarSmall from "@/components/icons/IconCalendarSmall";
-import IconClockSmall from "@/components/icons/IconClockSmall";
+import EventContent from "@/components/content/EventContent";
 import { type Event, type EventTime } from "@/context/user-sessions-context";
 import { getEventUsingID } from "@/store/dataStore";
+import { getDominantColor } from "@/util/sampleColor";
 
-type ParagraphObject = {
+export type ParagraphObject = {
   text: string;
   id: string;
 };
@@ -60,39 +60,17 @@ export default async function Page({ params }: { params: { id: string } }) {
   const descriptionArray: ParagraphObject[] =
     splitStringByNewlineToObjects(rawDescription);
 
+  const imageUrl: string =
+    "https://uploads-ssl.webflow.com/61f4510e8113b1209cc00ab0/61f454a7fe8783b33295d0fc_Bg-Image.jpg"; //parsedData.image;
+  const dominantColor = await getDominantColor(imageUrl);
+
   return (
-    <>
-      <img
-        className="fixed z-[-1] left-0 right-0 top-0"
-        src={parsedData.image}
-      />
-      <div className="flex flex-col">
-        <div className="aspect-square flex flex-col justify-end">
-          <div className="bg-event-page-gradient h-36" />
-        </div>
-        <div className="bg-brandWhite px-5">
-          <div className="flex flex-col gap-9 -mt-12">
-            <div className="flex flex-col gap-5">
-              <div className="text-4xl">{parsedData.name}</div>
-              <div className="flex gap-3 font-medium">
-                <div className="flex gap-2 items-center leading-none">
-                  <IconCalendarSmall />
-                  <div className="pt-0.5">{formattedDate}</div>
-                </div>
-                <div className="flex gap-2 items-center leading-none">
-                  <IconClockSmall />
-                  <div className="pt-0.5">{differenceInHours}</div>
-                </div>
-              </div>
-            </div>
-            <div className="flex flex-col gap-1">
-              {descriptionArray.map((paragraph) => (
-                <p key={paragraph.id}>{paragraph.text}</p>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    </>
+    <EventContent
+      descriptionArray={descriptionArray}
+      formattedDate={formattedDate}
+      differenceInHours={differenceInHours}
+      parsedData={parsedData}
+      dominantColor={dominantColor}
+    />
   );
 }

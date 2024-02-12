@@ -92,14 +92,14 @@ export const getEvents = () => {
   return events;
 };
 
-export const getEventUsingID = (id: string): Event | { error: string } => {
+export function getEventUsingID(id: string): Event | { error: string } {
   const foundEvent: Event | undefined = events.find((event) => event.id === id);
   if (foundEvent) {
     return foundEvent;
   } else {
     return { error: "No event has this id" };
   }
-};
+}
 
 // function to get user events
 export const getUserEvents = () => {
