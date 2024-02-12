@@ -9,7 +9,7 @@ export async function getDominantColor(imageUrl: string): Promise<string> {
   const arrayBuffer = await response.arrayBuffer();
   const buffer = Buffer.from(arrayBuffer);
   const { dominant } = await sharp(buffer).stats();
-  const rgb = `rgb(${dominant.r}, ${dominant.g}, ${dominant.b})`;
+  const rgb = `${dominant.r}, ${dominant.g}, ${dominant.b}`;
 
   return rgb;
 }

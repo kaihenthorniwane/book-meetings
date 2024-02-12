@@ -5,6 +5,7 @@ import { type Event } from "@/context/user-sessions-context";
 import { CSSProperties, useEffect, useRef, useState } from "react";
 import IconCalendarSmall from "../icons/IconCalendarSmall";
 import IconClockSmall from "../icons/IconClockSmall";
+import ColorChangingGradient from "./ColorChangingGradient";
 
 export default function EventContent({
   parsedData,
@@ -27,7 +28,7 @@ export default function EventContent({
     const handleScroll = () => {
       if (!elementRef.current) return;
 
-      const thresholdPercentage: number = 30;
+      const thresholdPercentage: number = 40;
 
       const elementRelativeToViewport: DOMRect =
         elementRef.current.getBoundingClientRect();
@@ -53,7 +54,7 @@ export default function EventContent({
   }, []);
 
   const backgroundStyleOne: CSSProperties = {
-    backgroundColor: dominantColor,
+    backgroundColor: "rgb(" + dominantColor + ")",
   };
 
   const backgroundStyleTwo: CSSProperties = {
@@ -68,10 +69,14 @@ export default function EventContent({
       />
       <div className="flex flex-col">
         <div className="aspect-square flex flex-col justify-end">
-          <div className="bg-event-page-gradient h-36" />
+          <ColorChangingGradient
+            color={
+              scrolledPast ? "var(--Brand-White)" : "rgb(" + dominantColor + ")"
+            }
+          />
         </div>
         <div
-          className="bg-brandWhite px-5"
+          className="bg-brandWhite px-5 transition-colors"
           ref={elementRef}
           style={scrolledPast ? backgroundStyleTwo : backgroundStyleOne}
         >

@@ -60,8 +60,7 @@ export default async function Page({ params }: { params: { id: string } }) {
   const descriptionArray: ParagraphObject[] =
     splitStringByNewlineToObjects(rawDescription);
 
-  const imageUrl: string =
-    "https://uploads-ssl.webflow.com/61f4510e8113b1209cc00ab0/61f454a7fe8783b33295d0fc_Bg-Image.jpg"; //parsedData.image;
+  const imageUrl: string = parsedData.image;
   const dominantColor = await getDominantColor(imageUrl);
 
   return (
