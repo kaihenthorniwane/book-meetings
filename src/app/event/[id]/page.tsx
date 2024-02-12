@@ -3,6 +3,11 @@ import IconClockSmall from "@/components/icons/IconClockSmall";
 import { type Event, type EventTime } from "@/context/user-sessions-context";
 import { getEventUsingID } from "@/store/dataStore";
 
+type ParagraphObject = {
+  text: string;
+  id: string;
+};
+
 export default async function Page({ params }: { params: { id: string } }) {
   const eventData = getEventUsingID(params.id);
   if ("error" in eventData) {
@@ -39,6 +44,22 @@ export default async function Page({ params }: { params: { id: string } }) {
     differenceInMilliseconds / (1000 * 60 * 60)
   );
 
+  function splitStringByNewlineToObjects(input: string): ParagraphObject[] {
+    const newArray: ParagraphObject[] = input
+      .replace(/\r\n/g, "\n")
+      .split("\n")
+      .map((text, index) => {
+        const salt: string = text.substring(0, 5).replace(/\s/g, "");
+        const id: string = `${index}-${salt}`;
+        return { text, id };
+      });
+    return newArray;
+  }
+
+  const rawDescription: string = parsedData.description;
+  const descriptionArray: ParagraphObject[] =
+    splitStringByNewlineToObjects(rawDescription);
+
   return (
     <>
       <img
@@ -64,7 +85,11 @@ export default async function Page({ params }: { params: { id: string } }) {
                 </div>
               </div>
             </div>
-            <div>{parsedData.description}</div>
+            <div className="flex flex-col gap-1">
+              {descriptionArray.map((paragraph) => (
+                <p key={paragraph.id}>{paragraph.text}</p>
+              ))}
+            </div>
           </div>
         </div>
       </div>
