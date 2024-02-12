@@ -6,6 +6,7 @@ export default function ColorChangingGradient({
   return (
     <svg
       className="w-full h-36"
+      viewBox="0 0 375 148"
       preserveAspectRatio="none"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -24,7 +25,7 @@ export default function ColorChangingGradient({
           fill="url(#paint0_linear_244_5573)"
         />
       </mask>
-      <g mask="url(#mask0_244_5573)">
+      <g mask="url(#mask0_244_5573)" className="w-full">
         <path
           d="M375 148L0 148L1.29386e-05 -7.03433e-06L375 2.57492e-05L375 148Z"
           className="transition-colors"
