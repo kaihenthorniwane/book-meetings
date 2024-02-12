@@ -4,7 +4,7 @@ import { type Event, type EventTime } from "@/context/user-sessions-context";
 
 export default async function Page({ params }: { params: { id: string } }) {
   const eventData = await fetch(
-    process.env.NEXT_PUBLIC_VERCEL_URL + "/api/get-event-by-id/?id=" + params.id
+    process.env.VERCEL_URL + "/api/get-event-by-id/?id=" + params.id
   );
 
   const parsedData: Event = await eventData.json();
