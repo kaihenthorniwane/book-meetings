@@ -5,7 +5,7 @@ export default function TopWhiteGradient({
 }) {
   return (
     <svg
-      className="fixed w-full -z-10 top-0 left-0 right-0 h-14 transition-opacity"
+      className="fixed w-full -z-10 top-0 left-0 right-0 h-14 transition-opacity duration-500"
       viewBox="0 0 375 57"
       preserveAspectRatio="none"
       fill="none"
