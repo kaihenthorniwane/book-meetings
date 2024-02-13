@@ -48,7 +48,7 @@ export default function EventContent({
 
       const thresholdPercentage: number = 40;
 
-      const secondThresholdPercentage: number = 20;
+      const secondThresholdPercentage: number = 15;
 
       const elementRelativeToViewport: DOMRect =
         elementRef.current.getBoundingClientRect();
