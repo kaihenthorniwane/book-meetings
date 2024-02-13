@@ -64,28 +64,39 @@ export default function EventContent({
     color: "var(--Brand-Black)",
   };
 
+  const bgColors = {
+    styleTwo: "var(--Brand-White)",
+    styleOne: "rgb(" + dominantColor + ")",
+  };
+
   const imageOpacities = {
-    styleOne: "0.25",
-    styleTwo: "1",
+    styleTwo: "0.25",
+    styleOne: "1",
   };
 
   const iconColors = {
-    styleOne: "var(--Brand-Black)",
-    styleTwo: defaultTextColor,
+    styleTwo: "var(--Brand-Black)",
+    styleOne: defaultTextColor,
   };
 
   return (
-    <>
+    <main
+      style={{
+        backgroundColor: scrolledPast
+          ? bgColors["styleTwo"]
+          : bgColors["styleOne"],
+      }}
+    >
       <img
-        className="fixed z-[-1] left-0 right-0 top-0 transition-opacity"
+        className="fixed left-0 right-0 top-0 transition-opacity"
         style={{
           opacity: scrolledPast
-            ? imageOpacities["styleOne"]
-            : imageOpacities["styleTwo"],
+            ? imageOpacities["styleTwo"]
+            : imageOpacities["styleOne"],
         }}
         src={parsedData.image}
       />
-      <div className="flex flex-col">
+      <div className="flex flex-col relative z-1">
         <div className="aspect-square flex flex-col justify-end">
           <ColorChangingGradient
             color={
@@ -106,8 +117,8 @@ export default function EventContent({
                   <IconCalendarSmall
                     color={
                       scrolledPast
-                        ? iconColors["styleOne"]
-                        : iconColors["styleTwo"]
+                        ? iconColors["styleTwo"]
+                        : iconColors["styleOne"]
                     }
                   />
                   <div>{formattedDate}</div>
@@ -116,8 +127,8 @@ export default function EventContent({
                   <IconClockSmall
                     color={
                       scrolledPast
-                        ? iconColors["styleOne"]
-                        : iconColors["styleTwo"]
+                        ? iconColors["styleTwo"]
+                        : iconColors["styleOne"]
                     }
                   />
                   <div>{differenceInHours}</div>
@@ -132,6 +143,6 @@ export default function EventContent({
           </div>
         </div>
       </div>
-    </>
+    </main>
   );
 }
