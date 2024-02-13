@@ -88,7 +88,7 @@ export default function EventContent({
 
   return (
     <body
-      className="text-xl font-body text-brandBlack"
+      className="text-xl font-body text-brandBlack transition-colors"
       style={{
         backgroundColor: scrolledPast
           ? bodyColors["styleTwo"]
