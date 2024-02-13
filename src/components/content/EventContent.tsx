@@ -1,3 +1,5 @@
+"use client";
+
 import { type ParagraphObject } from "@/app/event/[id]/page";
 import { type Event } from "@/context/user-sessions-context";
 import { type CSSProperties, useEffect, useRef, useState } from "react";
@@ -22,38 +24,37 @@ export default function EventContent({
   defaultTextColor: string;
   averageImageTopColor: string;
 }) {
-  const scrolledPast = false;
-  //   const [scrolledPast, setScrolledPast] = useState<boolean>(false);
-  //   const elementRef = useRef<HTMLDivElement>(null);
+  const [scrolledPast, setScrolledPast] = useState<boolean>(false);
+  const elementRef = useRef<HTMLDivElement>(null);
 
-  //   useEffect(() => {
-  //     const handleScroll = () => {
-  //       if (!elementRef.current) return;
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!elementRef.current) return;
 
-  //       const thresholdPercentage: number = 40;
+      const thresholdPercentage: number = 40;
 
-  //       const elementRelativeToViewport: DOMRect =
-  //         elementRef.current.getBoundingClientRect();
-  //       const viewportHeight: number = window.innerHeight;
-  //       const scrollThresholdInPixels: number =
-  //         (thresholdPercentage / 100) * viewportHeight;
+      const elementRelativeToViewport: DOMRect =
+        elementRef.current.getBoundingClientRect();
+      const viewportHeight: number = window.innerHeight;
+      const scrollThresholdInPixels: number =
+        (thresholdPercentage / 100) * viewportHeight;
 
-  //       const didItScrollPastTheThreshold: boolean =
-  //         elementRelativeToViewport.top < scrollThresholdInPixels;
+      const didItScrollPastTheThreshold: boolean =
+        elementRelativeToViewport.top < scrollThresholdInPixels;
 
-  //       if (didItScrollPastTheThreshold) {
-  //         setScrolledPast(true);
-  //       } else {
-  //         setScrolledPast(false);
-  //       }
-  //     };
+      if (didItScrollPastTheThreshold) {
+        setScrolledPast(true);
+      } else {
+        setScrolledPast(false);
+      }
+    };
 
-  //     window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
-  //     return () => {
-  //       window.removeEventListener("scroll", handleScroll);
-  //     };
-  //   }, []);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const componentStyleOne: CSSProperties = {
     backgroundColor: "rgb(" + dominantColor + ")",
@@ -123,7 +124,7 @@ export default function EventContent({
           </div>
           <div
             className="bg-brandWhite px-5 transition-colors"
-            // ref={elementRef}
+            ref={elementRef}
             style={scrolledPast ? componentStyleTwo : componentStyleOne}
           >
             <div className="flex flex-col gap-9 -mt-12">
