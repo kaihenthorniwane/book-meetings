@@ -56,7 +56,7 @@ let events: Event[] = [
     description:
       "TypeScript adds a powerful type system on top of JavaScript.\n\nIt enhances React development by ensuring type safety, reducing runtime errors.\n\nIn this session, we'll start with TypeScript basics: interfaces, types, and generics.\n\nHow can these features improve your React components and hooks?\n\nWe'll integrate TypeScript in a React project, highlighting best practices.\n\nExperience how TypeScript transforms the development process, making it more robust and maintainable.",
     image:
-      "https://uploads-ssl.webflow.com/61f4510e8113b1209cc00ab0/65c99b1d22f62f56316f182e_0_0.webp",
+      "https://uploads-ssl.webflow.com/61f4510e8113b1209cc00ab0/65cacb6a5fb9dff97e3bebb7_img3.webp",
     date: new Date("2023-11-14"),
     times: [
       {
@@ -73,7 +73,7 @@ let events: Event[] = [
     description:
       "React Hooks revolutionized how we work with React, making code more reusable and components more compact.\n\nThis session covers the basics: useState, useEffect, useContext, and more.\n\nHow do Hooks simplify state management and side effects?\n\nWe'll explore custom Hooks, showcasing their power in building your own abstractions.\n\nPractical exercises will help solidify your understanding, preparing you to use Hooks in your projects effectively.",
     image:
-      "https://uploads-ssl.webflow.com/61f4510e8113b1209cc00ab0/65c99b1d22f62f56316f182e_0_0.webp",
+      "https://uploads-ssl.webflow.com/61f4510e8113b1209cc00ab0/65cacb9f926d4ff600a8c6e4_img4.webp",
     date: new Date("2023-11-21"),
     times: [
       {
