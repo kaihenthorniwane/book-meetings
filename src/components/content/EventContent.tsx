@@ -2,10 +2,13 @@
 
 import { type ParagraphObject } from "@/app/event/[id]/page";
 import { type Event } from "@/context/user-sessions-context";
+import Link from "next/link";
 import { type CSSProperties, useEffect, useRef, useState } from "react";
+import IconBackArrow from "../icons/IconBackArrow";
 import IconCalendarSmall from "../icons/IconCalendarSmall";
 import IconClockSmall from "../icons/IconClockSmall";
 import ColorChangingGradient from "./ColorChangingGradient";
+import TopWhiteGradient from "./TopWhiteGradient";
 
 export default function EventContent({
   parsedData,
@@ -25,6 +28,7 @@ export default function EventContent({
   averageImageTopColor: string;
 }) {
   const [scrolledPast, setScrolledPast] = useState<boolean>(false);
+  const [secondScrolledPast, setSecondScrolledPast] = useState<boolean>(false);
   const elementRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -33,19 +37,32 @@ export default function EventContent({
 
       const thresholdPercentage: number = 40;
 
+      const secondThresholdPercentage: number = 10;
+
       const elementRelativeToViewport: DOMRect =
         elementRef.current.getBoundingClientRect();
       const viewportHeight: number = window.innerHeight;
       const scrollThresholdInPixels: number =
         (thresholdPercentage / 100) * viewportHeight;
+      const secondScrollThresholdInPixels: number =
+        (secondThresholdPercentage / 100) * viewportHeight;
 
       const didItScrollPastTheThreshold: boolean =
         elementRelativeToViewport.top < scrollThresholdInPixels;
+
+      const secondDidItScrollPastTheThreshold: boolean =
+        elementRelativeToViewport.top < secondScrollThresholdInPixels;
 
       if (didItScrollPastTheThreshold) {
         setScrolledPast(true);
       } else {
         setScrolledPast(false);
+      }
+
+      if (secondDidItScrollPastTheThreshold) {
+        setSecondScrolledPast(true);
+      } else {
+        setSecondScrolledPast(false);
       }
     };
 
@@ -81,6 +98,11 @@ export default function EventContent({
     styleOne: "1",
   };
 
+  const gradientOpacities = {
+    styleTwo: "1",
+    styleOne: "0",
+  };
+
   const iconColors = {
     styleTwo: "var(--Brand-Black)",
     styleOne: defaultTextColor,
@@ -113,6 +135,22 @@ export default function EventContent({
           src={parsedData.image}
         />
         <div className="flex flex-col relative">
+          <div className="fixed left-0 right-0 top-0 flex justify-between px-5 py-3">
+            <Link href="/" className="relative">
+              <IconBackArrow
+                color={
+                  scrolledPast ? iconColors["styleTwo"] : iconColors["styleOne"]
+                }
+              />
+            </Link>
+            <TopWhiteGradient
+              opacity={
+                secondScrolledPast
+                  ? gradientOpacities["styleTwo"]
+                  : gradientOpacities["styleOne"]
+              }
+            />
+          </div>
           <div className="aspect-square flex flex-col justify-end">
             <ColorChangingGradient
               color={
