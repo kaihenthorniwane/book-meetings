@@ -2,7 +2,7 @@
 
 import { type ParagraphObject } from "@/app/event/[id]/page";
 import { type Event } from "@/context/user-sessions-context";
-import { CSSProperties, useEffect, useRef, useState } from "react";
+import { type CSSProperties, useEffect, useRef, useState } from "react";
 import IconCalendarSmall from "../icons/IconCalendarSmall";
 import IconClockSmall from "../icons/IconClockSmall";
 import ColorChangingGradient from "./ColorChangingGradient";
