@@ -1,7 +1,7 @@
 import EventContent from "@/components/content/EventContent";
 import { type Event, type EventTime } from "@/context/user-sessions-context";
 import { getEventUsingID } from "@/store/dataStore";
-import { getDominantColor } from "@/util/sampleColor";
+import { getDominantColor, getRelativeLuminance } from "@/util/sampleColor";
 
 export type ParagraphObject = {
   text: string;
@@ -61,7 +61,12 @@ export default async function Page({ params }: { params: { id: string } }) {
     splitStringByNewlineToObjects(rawDescription);
 
   const imageUrl: string = parsedData.image;
-  const dominantColor = await getDominantColor(imageUrl);
+  const dominantColor: string = await getDominantColor(imageUrl);
+  const colorLuminance: number = getRelativeLuminance(dominantColor);
+  const isTooDark: boolean = colorLuminance < 0.5;
+  const defaultTextColor = isTooDark
+    ? "var(--Brand-White)"
+    : "var(--Brand-Black)";
 
   return (
     <EventContent
@@ -70,6 +75,7 @@ export default async function Page({ params }: { params: { id: string } }) {
       differenceInHours={differenceInHours}
       parsedData={parsedData}
       dominantColor={dominantColor}
+      defaultTextColor={defaultTextColor}
     />
   );
 }

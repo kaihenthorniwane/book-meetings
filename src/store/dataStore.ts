@@ -22,7 +22,7 @@ let events: Event[] = [
     description:
       "Starting with React can be daunting.\n\nYet, with the right guidance, it can be an exhilarating journey.\n\nIn this session, we will begin by demystifying React's core philosophy.\n\nWhy was React created?\n\nWhat problems does it solve in the world of web development?\n\nTogether, we'll delve into the virtual DOM, JSX, and component-based architecture.\n\nNo need to worry about the jargon; I'll break everything down step by step.\n\nWe'll touch on the importance of unidirectional data flow and the component lifecycle.\n\nWe'll set up a new React project together.\n\nBy the end of our session, you will have a clear understanding and a roadmap tailored just for you, to aid your React journey.",
     image:
-      "https://uploads-ssl.webflow.com/61f4510e8113b1209cc00ab0/65c99b1d22f62f56316f182e_0_0.webp",
+      "https://uploads-ssl.webflow.com/61f4510e8113b1209cc00ab0/65cab5655af2fcdc235c879b_img2.webp",
     date: new Date("2023-10-31"),
     times: [
       {
