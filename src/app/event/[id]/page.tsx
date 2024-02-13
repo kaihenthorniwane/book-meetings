@@ -6,6 +6,11 @@ import {
   getDominantColor,
   getRelativeLuminance,
 } from "@/util/sampleColor";
+import { unstable_cache } from "next/cache";
+
+const getCachedDominantColor = unstable_cache(getDominantColor);
+
+const getCachedAverageTopColor = unstable_cache(getAverageTopColor);
 
 export type ParagraphObject = {
   text: string;
@@ -65,13 +70,13 @@ export default async function Page({ params }: { params: { id: string } }) {
     splitStringByNewlineToObjects(rawDescription);
 
   const imageUrl: string = parsedData.image;
-  const dominantColor: string = await getDominantColor(imageUrl);
+  const dominantColor: string = await getCachedDominantColor(imageUrl);
   const colorLuminance: number = getRelativeLuminance(dominantColor);
   const isTooDark: boolean = colorLuminance < 0.5;
   const defaultTextColor = isTooDark
     ? "var(--Brand-White)"
     : "var(--Brand-Black)";
-  const averageImageTopColor: string = await getAverageTopColor(imageUrl);
+  const averageImageTopColor: string = await getCachedAverageTopColor(imageUrl);
 
   return (
     <EventContent
