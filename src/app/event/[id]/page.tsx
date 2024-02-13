@@ -7,6 +7,7 @@ import {
   getRelativeLuminance,
 } from "@/util/sampleColor";
 import { unstable_cache } from "next/cache";
+import { CSSProperties } from "react";
 
 const getCachedDominantColor = unstable_cache(getDominantColor);
 
@@ -15,6 +16,21 @@ const getCachedAverageTopColor = unstable_cache(getAverageTopColor);
 export type ParagraphObject = {
   text: string;
   id: string;
+};
+
+export type StyleSwitch = {
+  styleTwo: string;
+  styleOne: string;
+};
+
+export type ThemeStyleOptions = {
+  componentStyleOne: CSSProperties;
+  componentStyleTwo: CSSProperties;
+  bgColors: StyleSwitch;
+  bodyColors: StyleSwitch;
+  imageOpacities: StyleSwitch;
+  gradientOpacities: StyleSwitch;
+  iconColors: StyleSwitch;
 };
 
 export default async function Page({ params }: { params: { id: string } }) {
@@ -78,6 +94,51 @@ export default async function Page({ params }: { params: { id: string } }) {
     : "var(--Brand-Black)";
   const averageImageTopColor: string = await getCachedAverageTopColor(imageUrl);
 
+  const componentStyleOne: CSSProperties = {
+    backgroundColor: "rgb(" + dominantColor + ")",
+    color: defaultTextColor,
+  };
+
+  const componentStyleTwo: CSSProperties = {
+    backgroundColor: "var(--Brand-White)",
+    color: "var(--Brand-Black)",
+  };
+
+  const bgColors: StyleSwitch = {
+    styleTwo: "var(--Brand-White)",
+    styleOne: "rgb(" + dominantColor + ")",
+  };
+
+  const bodyColors: StyleSwitch = {
+    styleTwo: "var(--Brand-White)",
+    styleOne: "rgb(" + averageImageTopColor + ")",
+  };
+
+  const imageOpacities: StyleSwitch = {
+    styleTwo: "0.25",
+    styleOne: "1",
+  };
+
+  const gradientOpacities: StyleSwitch = {
+    styleTwo: "1",
+    styleOne: "0",
+  };
+
+  const iconColors: StyleSwitch = {
+    styleTwo: "var(--Brand-Black)",
+    styleOne: defaultTextColor,
+  };
+
+  const themeStyleOptions: ThemeStyleOptions = {
+    componentStyleOne,
+    componentStyleTwo,
+    bgColors,
+    bodyColors,
+    imageOpacities,
+    gradientOpacities,
+    iconColors,
+  };
+
   return (
     <EventContent
       descriptionArray={descriptionArray}
@@ -85,8 +146,7 @@ export default async function Page({ params }: { params: { id: string } }) {
       differenceInHours={differenceInHours}
       parsedData={parsedData}
       dominantColor={dominantColor}
-      defaultTextColor={defaultTextColor}
-      averageImageTopColor={averageImageTopColor}
+      themeStyleOptions={themeStyleOptions}
     />
   );
 }

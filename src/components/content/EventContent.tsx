@@ -1,6 +1,9 @@
 "use client";
 
-import { type ParagraphObject } from "@/app/event/[id]/page";
+import {
+  type ThemeStyleOptions,
+  type ParagraphObject,
+} from "@/app/event/[id]/page";
 import { type Event } from "@/context/user-sessions-context";
 import Link from "next/link";
 import { type CSSProperties, useEffect, useRef, useState } from "react";
@@ -16,20 +19,28 @@ export default function EventContent({
   formattedDate,
   differenceInHours,
   dominantColor,
-  defaultTextColor,
-  averageImageTopColor,
+  themeStyleOptions,
 }: {
   parsedData: Event;
   descriptionArray: ParagraphObject[];
   formattedDate: string;
   differenceInHours: string;
   dominantColor: string;
-  defaultTextColor: string;
-  averageImageTopColor: string;
+  themeStyleOptions: ThemeStyleOptions;
 }) {
   const [scrolledPast, setScrolledPast] = useState<boolean>(false);
   const [secondScrolledPast, setSecondScrolledPast] = useState<boolean>(false);
   const elementRef = useRef<HTMLDivElement>(null);
+
+  const {
+    componentStyleOne,
+    componentStyleTwo,
+    bgColors,
+    bodyColors,
+    imageOpacities,
+    gradientOpacities,
+    iconColors,
+  } = themeStyleOptions;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -72,41 +83,6 @@ export default function EventContent({
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
-  const componentStyleOne: CSSProperties = {
-    backgroundColor: "rgb(" + dominantColor + ")",
-    color: defaultTextColor,
-  };
-
-  const componentStyleTwo: CSSProperties = {
-    backgroundColor: "var(--Brand-White)",
-    color: "var(--Brand-Black)",
-  };
-
-  const bgColors = {
-    styleTwo: "var(--Brand-White)",
-    styleOne: "rgb(" + dominantColor + ")",
-  };
-
-  const bodyColors = {
-    styleTwo: "var(--Brand-White)",
-    styleOne: "rgb(" + averageImageTopColor + ")",
-  };
-
-  const imageOpacities = {
-    styleTwo: "0.25",
-    styleOne: "1",
-  };
-
-  const gradientOpacities = {
-    styleTwo: "1",
-    styleOne: "0",
-  };
-
-  const iconColors = {
-    styleTwo: "var(--Brand-Black)",
-    styleOne: defaultTextColor,
-  };
 
   return (
     <body
