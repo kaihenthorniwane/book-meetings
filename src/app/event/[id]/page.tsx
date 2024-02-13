@@ -1,13 +1,14 @@
 import EventContent from "@/components/content/EventContent";
+import OtherEvents from "@/components/content/OtherEvents";
 import { type Event, type EventTime } from "@/context/user-sessions-context";
-import { getEventUsingID } from "@/store/dataStore";
+import { getEventAfterTheOneWithID, getEventUsingID } from "@/store/dataStore";
 import {
   getAverageTopColor,
   getDominantColor,
   getRelativeLuminance,
 } from "@/util/sampleColor";
 import { unstable_cache } from "next/cache";
-import { CSSProperties } from "react";
+import { type CSSProperties, type ReactNode } from "react";
 
 const getCachedDominantColor = unstable_cache(getDominantColor);
 
@@ -139,6 +140,12 @@ export default async function Page({ params }: { params: { id: string } }) {
     iconColors,
   };
 
+  const otherEvent: Event | { error: string } = getEventAfterTheOneWithID(
+    params.id
+  );
+  const otherEventsHTML: ReactNode =
+    "error" in otherEvent ? <></> : <OtherEvents eventItem={otherEvent} />;
+
   return (
     <EventContent
       descriptionArray={descriptionArray}
@@ -147,6 +154,7 @@ export default async function Page({ params }: { params: { id: string } }) {
       parsedData={parsedData}
       dominantColor={dominantColor}
       themeStyleOptions={themeStyleOptions}
+      otherEventsHTML={otherEventsHTML}
     />
   );
 }

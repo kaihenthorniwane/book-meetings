@@ -101,6 +101,21 @@ export function getEventUsingID(id: string): Event | { error: string } {
   }
 }
 
+export const getEventAfterTheOneWithID = (
+  id: string
+): Event | { error: string } => {
+  const index = events.findIndex((event) => event.id === id);
+
+  // Check if the event with the given ID was found and is not the last in the array
+  if (index !== -1 && index + 1 < events.length) {
+    return events[index + 1];
+  } else if (index === -1) {
+    return { error: "No event has this id" };
+  } else {
+    return events[0];
+  }
+};
+
 // function to get user events
 export const getUserEvents = () => {
   return events;

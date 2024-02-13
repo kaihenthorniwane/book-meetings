@@ -6,7 +6,13 @@ import {
 } from "@/app/event/[id]/page";
 import { type Event } from "@/context/user-sessions-context";
 import Link from "next/link";
-import { type CSSProperties, useEffect, useRef, useState } from "react";
+import {
+  type CSSProperties,
+  useEffect,
+  useRef,
+  useState,
+  ReactNode,
+} from "react";
 import IconBackArrow from "../icons/IconBackArrow";
 import IconCalendarSmall from "../icons/IconCalendarSmall";
 import IconClockSmall from "../icons/IconClockSmall";
@@ -20,6 +26,7 @@ export default function EventContent({
   differenceInHours,
   dominantColor,
   themeStyleOptions,
+  otherEventsHTML,
 }: {
   parsedData: Event;
   descriptionArray: ParagraphObject[];
@@ -27,6 +34,7 @@ export default function EventContent({
   differenceInHours: string;
   dominantColor: string;
   themeStyleOptions: ThemeStyleOptions;
+  otherEventsHTML: ReactNode;
 }) {
   const [scrolledPast, setScrolledPast] = useState<boolean>(false);
   const [secondScrolledPast, setSecondScrolledPast] = useState<boolean>(false);
@@ -137,7 +145,7 @@ export default function EventContent({
             />
           </div>
           <div
-            className="bg-brandWhite px-5 transition-colors"
+            className="bg-brandWhite px-5 pb-12 transition-colors"
             ref={elementRef}
             style={scrolledPast ? componentStyleTwo : componentStyleOne}
           >
@@ -174,6 +182,7 @@ export default function EventContent({
               </div>
             </div>
           </div>
+          {otherEventsHTML}
         </div>
       </main>
     </body>
