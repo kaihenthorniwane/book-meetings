@@ -80,7 +80,8 @@ export default function EventContent({
   };
 
   return (
-    <main
+    <body
+      className="text-xl font-body text-brandBlack"
       style={{
         backgroundColor: scrolledPast
           ? bgColors["styleTwo"]
@@ -88,7 +89,7 @@ export default function EventContent({
       }}
     >
       <img
-        className="fixed left-0 right-0 top-0 transition-opacity"
+        className="fixed -z-1 left-0 right-0 top-0 transition-opacity"
         style={{
           opacity: scrolledPast
             ? imageOpacities["styleTwo"]
@@ -96,7 +97,7 @@ export default function EventContent({
         }}
         src={parsedData.image}
       />
-      <div className="flex flex-col relative z-1">
+      <div className="flex flex-col relative">
         <div className="aspect-square flex flex-col justify-end">
           <ColorChangingGradient
             color={
@@ -143,6 +144,6 @@ export default function EventContent({
           </div>
         </div>
       </div>
-    </main>
+    </body>
   );
 }
