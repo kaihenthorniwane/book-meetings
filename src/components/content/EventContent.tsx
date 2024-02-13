@@ -88,11 +88,11 @@ export default function EventContent({
 
   return (
     <body
-      className="text-xl font-body text-brandBlack transition-colors"
+      className="text-xl font-body text-brandBlack"
       style={{
-        backgroundColor: !scrolledPast
-          ? bodyColors["styleOne"]
-          : bodyColors["styleTwo"],
+        backgroundColor: scrolledPast
+          ? bodyColors["styleTwo"]
+          : bodyColors["styleOne"],
       }}
     >
       <main
