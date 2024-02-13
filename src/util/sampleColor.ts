@@ -1,9 +1,5 @@
-// components/DominantColor.server.tsx
+import sharp, { Metadata, Stats } from "sharp";
 
-import type { NextApiRequest, NextApiResponse } from "next";
-import sharp from "sharp";
-
-// Function to fetch and process the image
 export async function getDominantColor(imageUrl: string): Promise<string> {
   const response = await fetch(imageUrl);
   const arrayBuffer = await response.arrayBuffer();
@@ -14,27 +10,46 @@ export async function getDominantColor(imageUrl: string): Promise<string> {
   return rgb;
 }
 
-// Function to calculate relative luminance
 export function getRelativeLuminance(color: string): number {
-  const rgb = color.split(",").map(Number);
-  const a = rgb.map(function (v) {
+  const rgb: number[] = color.split(",").map(Number);
+  const a: number[] = rgb.map(function (v) {
     v /= 255; // Scale v to be in the range 0-1
     return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
   });
   return a[0] * 0.2126 + a[1] * 0.7152 + a[2] * 0.0722;
 }
 
-// Example of an API endpoint using this function
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
-  const { imageUrl } = req.query;
+export async function getAverageTopColor(
+  imageUrl: string,
+  heightFraction: number = 0.1
+): Promise<string> {
+  const response: Response = await fetch(imageUrl);
+  const arrayBuffer: ArrayBuffer = await response.arrayBuffer();
+  const buffer: Buffer = Buffer.from(arrayBuffer);
 
-  if (typeof imageUrl === "string") {
-    const dominantColor = await getDominantColor(imageUrl);
-    res.status(200).json({ dominantColor });
+  const metadata: Metadata = await sharp(buffer).metadata();
+
+  if (
+    metadata &&
+    typeof metadata.height === "number" &&
+    typeof metadata.width === "number"
+  ) {
+    const topHeight: number = Math.round(metadata.height * heightFraction);
+
+    const topSliceBuffer: Buffer = await sharp(buffer)
+      .extract({ left: 0, top: 0, width: metadata.width, height: topHeight })
+      .toBuffer();
+
+    const stats: Stats = await sharp(topSliceBuffer).stats();
+    const avg: number[] = stats.channels.map((channel) =>
+      Math.round(channel.mean)
+    );
+    const rgb: string = `${avg[0]}, ${avg[1]}, ${avg[2]}`;
+
+    return rgb;
   } else {
-    res.status(400).json({ error: "Invalid image URL" });
+    throw new Error(
+      "Image metadata is undefined or does not contain height and width"
+    );
   }
 }

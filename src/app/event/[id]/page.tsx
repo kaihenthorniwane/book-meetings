@@ -1,7 +1,11 @@
 import EventContent from "@/components/content/EventContent";
 import { type Event, type EventTime } from "@/context/user-sessions-context";
 import { getEventUsingID } from "@/store/dataStore";
-import { getDominantColor, getRelativeLuminance } from "@/util/sampleColor";
+import {
+  getAverageTopColor,
+  getDominantColor,
+  getRelativeLuminance,
+} from "@/util/sampleColor";
 
 export type ParagraphObject = {
   text: string;
@@ -67,6 +71,7 @@ export default async function Page({ params }: { params: { id: string } }) {
   const defaultTextColor = isTooDark
     ? "var(--Brand-White)"
     : "var(--Brand-Black)";
+  const averageImageTopColor: string = await getAverageTopColor(imageUrl);
 
   return (
     <EventContent
@@ -76,6 +81,7 @@ export default async function Page({ params }: { params: { id: string } }) {
       parsedData={parsedData}
       dominantColor={dominantColor}
       defaultTextColor={defaultTextColor}
+      averageImageTopColor={averageImageTopColor}
     />
   );
 }

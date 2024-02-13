@@ -14,6 +14,7 @@ export default function EventContent({
   differenceInHours,
   dominantColor,
   defaultTextColor,
+  averageImageTopColor,
 }: {
   parsedData: Event;
   descriptionArray: ParagraphObject[];
@@ -21,6 +22,7 @@ export default function EventContent({
   differenceInHours: string;
   dominantColor: string;
   defaultTextColor: string;
+  averageImageTopColor: string;
 }) {
   const [scrolledPast, setScrolledPast] = useState<boolean>(false);
   const elementRef = useRef<HTMLDivElement>(null);
@@ -69,6 +71,11 @@ export default function EventContent({
     styleOne: "rgb(" + dominantColor + ")",
   };
 
+  const bodyColors = {
+    styleTwo: "var(--Brand-White)",
+    styleOne: "rgb(" + averageImageTopColor + ")",
+  };
+
   const imageOpacities = {
     styleTwo: "0.25",
     styleOne: "1",
@@ -84,66 +91,77 @@ export default function EventContent({
       className="text-xl font-body text-brandBlack"
       style={{
         backgroundColor: scrolledPast
-          ? bgColors["styleTwo"]
-          : bgColors["styleOne"],
+          ? bodyColors["styleTwo"]
+          : bodyColors["styleOne"],
       }}
     >
-      <img
-        className="fixed -z-1 left-0 right-0 top-0 transition-opacity"
+      <main
+        className="transition-colors"
         style={{
-          opacity: scrolledPast
-            ? imageOpacities["styleTwo"]
-            : imageOpacities["styleOne"],
+          backgroundColor: scrolledPast
+            ? bgColors["styleTwo"]
+            : bgColors["styleOne"],
         }}
-        src={parsedData.image}
-      />
-      <div className="flex flex-col relative">
-        <div className="aspect-square flex flex-col justify-end">
-          <ColorChangingGradient
-            color={
-              scrolledPast ? "var(--Brand-White)" : "rgb(" + dominantColor + ")"
-            }
-          />
-        </div>
-        <div
-          className="bg-brandWhite px-5 transition-colors"
-          ref={elementRef}
-          style={scrolledPast ? componentStyleTwo : componentStyleOne}
-        >
-          <div className="flex flex-col gap-9 -mt-12">
-            <div className="flex flex-col gap-5">
-              <div className="text-4xl">{parsedData.name}</div>
-              <div className="flex gap-4 font-medium">
-                <div className="flex gap-2 items-center leading-none">
-                  <IconCalendarSmall
-                    color={
-                      scrolledPast
-                        ? iconColors["styleTwo"]
-                        : iconColors["styleOne"]
-                    }
-                  />
-                  <div>{formattedDate}</div>
-                </div>
-                <div className="flex gap-2 items-center leading-none">
-                  <IconClockSmall
-                    color={
-                      scrolledPast
-                        ? iconColors["styleTwo"]
-                        : iconColors["styleOne"]
-                    }
-                  />
-                  <div>{differenceInHours}</div>
+      >
+        <img
+          className="fixed -z-1 left-0 right-0 top-0 transition-opacity"
+          style={{
+            opacity: scrolledPast
+              ? imageOpacities["styleTwo"]
+              : imageOpacities["styleOne"],
+          }}
+          src={parsedData.image}
+        />
+        <div className="flex flex-col relative">
+          <div className="aspect-square flex flex-col justify-end">
+            <ColorChangingGradient
+              color={
+                scrolledPast
+                  ? "var(--Brand-White)"
+                  : "rgb(" + dominantColor + ")"
+              }
+            />
+          </div>
+          <div
+            className="bg-brandWhite px-5 transition-colors"
+            ref={elementRef}
+            style={scrolledPast ? componentStyleTwo : componentStyleOne}
+          >
+            <div className="flex flex-col gap-9 -mt-12">
+              <div className="flex flex-col gap-5">
+                <div className="text-4xl">{parsedData.name}</div>
+                <div className="flex gap-4 font-medium">
+                  <div className="flex gap-2 items-center leading-none">
+                    <IconCalendarSmall
+                      color={
+                        scrolledPast
+                          ? iconColors["styleTwo"]
+                          : iconColors["styleOne"]
+                      }
+                    />
+                    <div>{formattedDate}</div>
+                  </div>
+                  <div className="flex gap-2 items-center leading-none">
+                    <IconClockSmall
+                      color={
+                        scrolledPast
+                          ? iconColors["styleTwo"]
+                          : iconColors["styleOne"]
+                      }
+                    />
+                    <div>{differenceInHours}</div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="flex flex-col gap-1">
-              {descriptionArray.map((paragraph) => (
-                <p key={paragraph.id}>{paragraph.text}</p>
-              ))}
+              <div className="flex flex-col gap-1">
+                {descriptionArray.map((paragraph) => (
+                  <p key={paragraph.id}>{paragraph.text}</p>
+                ))}
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </main>
     </body>
   );
 }
