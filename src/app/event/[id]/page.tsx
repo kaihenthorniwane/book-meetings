@@ -143,7 +143,7 @@ export default async function Page({ params }: { params: { id: string } }) {
   const otherEvent: Event | { error: string } = getEventAfterTheOneWithID(
     params.id
   );
-  const otherEventsHTML: ReactNode =
+  const otherEventHTML: ReactNode =
     "error" in otherEvent ? <></> : <OtherEvents eventItem={otherEvent} />;
 
   return (
@@ -154,7 +154,7 @@ export default async function Page({ params }: { params: { id: string } }) {
       parsedData={parsedData}
       dominantColor={dominantColor}
       themeStyleOptions={themeStyleOptions}
-      otherEventsHTML={otherEventsHTML}
+      otherEventHTML={otherEventHTML}
     />
   );
 }

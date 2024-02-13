@@ -6,13 +6,7 @@ import {
 } from "@/app/event/[id]/page";
 import { type Event } from "@/context/user-sessions-context";
 import Link from "next/link";
-import {
-  type CSSProperties,
-  useEffect,
-  useRef,
-  useState,
-  ReactNode,
-} from "react";
+import { useEffect, useRef, useState, ReactNode } from "react";
 import IconBackArrow from "../icons/IconBackArrow";
 import IconCalendarSmall from "../icons/IconCalendarSmall";
 import IconClockSmall from "../icons/IconClockSmall";
@@ -26,7 +20,7 @@ export default function EventContent({
   differenceInHours,
   dominantColor,
   themeStyleOptions,
-  otherEventsHTML,
+  otherEventHTML,
 }: {
   parsedData: Event;
   descriptionArray: ParagraphObject[];
@@ -34,7 +28,7 @@ export default function EventContent({
   differenceInHours: string;
   dominantColor: string;
   themeStyleOptions: ThemeStyleOptions;
-  otherEventsHTML: ReactNode;
+  otherEventHTML: ReactNode;
 }) {
   const [scrolledPast, setScrolledPast] = useState<boolean>(false);
   const [secondScrolledPast, setSecondScrolledPast] = useState<boolean>(false);
@@ -151,7 +145,7 @@ export default function EventContent({
           >
             <div className="flex flex-col gap-9 -mt-12">
               <div className="flex flex-col gap-5">
-                <div className="text-4xl">{parsedData.name}</div>
+                <span className="text-4xl">{parsedData.name}</span>
                 <div className="flex gap-4 font-medium">
                   <div className="flex gap-2 items-center leading-none">
                     <IconCalendarSmall
@@ -182,7 +176,7 @@ export default function EventContent({
               </div>
             </div>
           </div>
-          {otherEventsHTML}
+          {otherEventHTML}
         </div>
       </main>
     </body>
