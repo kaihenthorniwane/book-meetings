@@ -1,32 +1,19 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
-import IconBackArrow from "../icons/IconBackArrow";
 import IconCalendarSmall from "../icons/IconCalendarSmall";
 import IconClockSmall from "../icons/IconClockSmall";
-import ColorChangingGradient from "./ColorChangingGradient";
 import { type EventContentProps } from "./EventContent";
-import TopWhiteGradient from "./TopWhiteGradient";
 
 export default function EventContentDesktop({
   parsedData,
   descriptionArray,
   formattedDate,
   differenceInHours,
-  dominantColor,
   themeStyleOptions,
   otherEventHTML,
 }: EventContentProps) {
-  const {
-    componentStyleOne,
-    componentStyleTwo,
-    bgColors,
-    bodyColors,
-    imageOpacities,
-    gradientOpacities,
-    iconColors,
-  } = themeStyleOptions;
+  const { componentStyleOne, bgColors, iconColors } = themeStyleOptions;
 
   return (
     <body
@@ -47,6 +34,14 @@ export default function EventContentDesktop({
           >
             <div className="flex flex-col gap-9">
               <div className="flex flex-col gap-5">
+                <div className="flex gap-1 text-base">
+                  <Link href={"/"}> Home </Link>
+                  {"/"}
+                  <Link href={"/event/" + parsedData.id}>
+                    {" "}
+                    {parsedData.name}{" "}
+                  </Link>
+                </div>
                 <span className="text-4xl">{parsedData.name}</span>
                 <div className="flex gap-4 font-medium">
                   <div className="flex gap-2 items-center leading-none">
