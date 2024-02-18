@@ -178,7 +178,12 @@ export default function EventContent({
               </div>
             </div>
           </div>
-          {otherEventHTML}
+          <div
+            className="transition-colors"
+            style={scrolledPast ? componentStyleTwo : componentStyleOne}
+          >
+            {otherEventHTML}
+          </div>
         </div>
       </main>
     </body>
