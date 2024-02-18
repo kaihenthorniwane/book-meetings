@@ -101,7 +101,9 @@ export default async function Page({ params }: { params: { id: string } }) {
     dominantColor = formatRgbObject(
       makeColorMoreContrastyPreservingSaturation(
         sourceDominantColor,
-        isTooDark ? "darken" : "lighten"
+        isTooDark ? "darken" : "lighten",
+        0.25,
+        0.8
       )
     );
   } else if (proximityToGrey < 0.3) {
