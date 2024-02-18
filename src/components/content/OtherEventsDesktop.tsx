@@ -16,8 +16,10 @@ export default function OtherEventsDesktop({
           <span className="text-3xl">{prevEventItem.name}</span>
         </div>
         <div className="max-h-32 overflow-hidden relative">
-          <div className="absolute z-10 left-0 top-0 right-0 bottom-0" />
-          <img className="relative" src={prevEventItem.image} />
+          <img
+            className="relative mix-blend-luminosity"
+            src={prevEventItem.image}
+          />
         </div>
       </Link>
       <Link href={"/event/" + nextEventItem.id} className="flex flex-col gap-5">
@@ -26,8 +28,10 @@ export default function OtherEventsDesktop({
           <span className="text-3xl">{nextEventItem.name}</span>
         </div>
         <div className="max-h-32 overflow-hidden relative">
-          <div className="absolute z-10  left-0 top-0 right-0 bottom-0" />
-          <img className="relative" src={nextEventItem.image} />
+          <img
+            className="relative mix-blend-luminosity"
+            src={nextEventItem.image}
+          />
         </div>
       </Link>
     </div>
