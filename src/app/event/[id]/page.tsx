@@ -200,6 +200,7 @@ export default async function Page({ params }: { params: { id: string } }) {
       <OtherEventsDesktop
         nextEventItem={nextEventItem}
         prevEventItem={prevEventItem}
+        color={"rgb(" + dominantColor + ")"}
       />
     );
 

@@ -36,7 +36,7 @@ export default function EventContentDesktop({
       }}
     >
       <main
-        className="max-w-screen-xl transition-colors mt-16 mx-5 flex flex-col gap-16"
+        className="max-w-screen-xl transition-colors mt-16 mx-10 flex flex-col gap-16"
         style={componentStyleOne}
       >
         <div className=" grid grid-cols-2 gap-10">

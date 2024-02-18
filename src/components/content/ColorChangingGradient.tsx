@@ -1,11 +1,13 @@
 export default function ColorChangingGradient({
   color = "var(--Brand-White)",
+  className = "w-full h-36",
 }: {
   color?: string;
+  className?: string;
 }) {
   return (
     <svg
-      className="w-full h-36"
+      className={className}
       viewBox="0 0 375 148"
       preserveAspectRatio="none"
       fill="none"
