@@ -218,6 +218,22 @@ export const getEventAfterTheOneWithID = (
   }
 };
 
+export const getEventBeforeTheOneWithID = (
+  id: string
+): Event | { error: string } => {
+  const index = events.findIndex((event) => event.id === id);
+
+  // Check if the event with the given ID was found and is not the first in the array
+  if (index > 0) {
+    return events[index - 1];
+  } else if (index === -1) {
+    return { error: "No event has this id" };
+  } else {
+    // If it's the first event, return the last one in the array
+    return events[events.length - 1];
+  }
+};
+
 // function to get user events
 export const getUserEvents = () => {
   return events;

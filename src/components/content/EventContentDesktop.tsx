@@ -36,13 +36,11 @@ export default function EventContentDesktop({
       }}
     >
       <main
-        className="max-w-screen-xl transition-colors grid grid-cols-2 gap-10 mt-20 mx-5"
-        style={{
-          backgroundColor: bgColors["styleOne"],
-        }}
+        className="max-w-screen-xl transition-colors mt-20 mx-5 flex flex-col gap-16"
+        style={componentStyleOne}
       >
-        <img className="transition-opacity" src={parsedData.image} />
-        <div className="flex flex-col relative">
+        <div className=" grid grid-cols-2 gap-10">
+          <img className="transition-opacity" src={parsedData.image} />
           <div
             className="bg-brandWhite transition-colors"
             style={componentStyleOne}
@@ -69,6 +67,7 @@ export default function EventContentDesktop({
             </div>
           </div>
         </div>
+        {otherEventHTML}
       </main>
     </body>
   );

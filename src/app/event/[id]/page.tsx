@@ -1,8 +1,13 @@
 import EventContent from "@/components/content/EventContent";
 import EventContentSwitcher from "@/components/content/EventContentSwitcher";
 import OtherEvents from "@/components/content/OtherEvents";
+import OtherEventsDesktop from "@/components/content/OtherEventsDesktop";
 import { type Event, type EventTime } from "@/context/user-sessions-context";
-import { getEventAfterTheOneWithID, getEventUsingID } from "@/store/dataStore";
+import {
+  getEventAfterTheOneWithID,
+  getEventBeforeTheOneWithID,
+  getEventUsingID,
+} from "@/store/dataStore";
 import {
   formatRgbObject,
   getAverageTopColor,
@@ -173,11 +178,30 @@ export default async function Page({ params }: { params: { id: string } }) {
     iconColors,
   };
 
-  const otherEvent: Event | { error: string } = getEventAfterTheOneWithID(
+  const nextEventItem: Event | { error: string } = getEventAfterTheOneWithID(
     params.id
   );
+
   const otherEventHTML: ReactNode =
-    "error" in otherEvent ? <></> : <OtherEvents eventItem={otherEvent} />;
+    "error" in nextEventItem ? (
+      <></>
+    ) : (
+      <OtherEvents eventItem={nextEventItem} />
+    );
+
+  const prevEventItem: Event | { error: string } = getEventBeforeTheOneWithID(
+    params.id
+  );
+
+  const nextAndPrevEventHTML: ReactNode =
+    "error" in prevEventItem || "error" in nextEventItem ? (
+      <></>
+    ) : (
+      <OtherEventsDesktop
+        nextEventItem={nextEventItem}
+        prevEventItem={prevEventItem}
+      />
+    );
 
   return (
     <EventContentSwitcher
@@ -188,6 +212,7 @@ export default async function Page({ params }: { params: { id: string } }) {
       dominantColor={dominantColor}
       themeStyleOptions={themeStyleOptions}
       otherEventHTML={otherEventHTML}
+      nextAndPrevEventHTML={nextAndPrevEventHTML}
     />
   );
 }

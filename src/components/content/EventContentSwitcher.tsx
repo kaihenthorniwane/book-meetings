@@ -1,10 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { type ReactNode, useEffect, useState } from "react";
 import EventContent, { type EventContentProps } from "./EventContent";
 import EventContentDesktop from "./EventContentDesktop";
 
-export default function EventContentSwitcher({ ...props }: EventContentProps) {
+export default function EventContentSwitcher({
+  nextAndPrevEventHTML,
+  ...props
+}: EventContentProps & { nextAndPrevEventHTML: ReactNode }) {
   const [isMobile, setIsMobile] = useState<boolean | null>(null);
 
   useEffect(() => {
@@ -26,7 +29,7 @@ export default function EventContentSwitcher({ ...props }: EventContentProps) {
       {isMobile ? (
         <EventContent {...props} />
       ) : (
-        <EventContentDesktop {...props} />
+        <EventContentDesktop {...props} otherEventHTML={nextAndPrevEventHTML} />
       )}
     </>
   );
