@@ -83,6 +83,108 @@ let events: Event[] = [
       },
     ],
   },
+  {
+    id: "event-5",
+    name: "React Routing and SPA Development",
+    tagline: "Crafting single-page applications with React Router.",
+    description:
+      "Dive into the essentials of single-page application (SPA) development with React Router.\n\nUnderstand the significance of routing in modern web applications.\n\nLearn to configure and use React Router for enabling navigational components and URLs.\n\nWe'll cover dynamic routing, nested routes, and route protection to build intuitive and efficient SPAs.\n\nBy the end of this session, you'll be adept at implementing seamless navigation in your React projects.",
+    image:
+      "https://uploads-ssl.webflow.com/61f4510e8113b1209cc00ab0/65d26b86026a4a0dd4b92bc3_cdnimage3.webp",
+    date: new Date("2023-11-28"),
+    times: [
+      {
+        start: new Date("2023-11-28T09:00:00"),
+        end: new Date("2023-11-28T10:30:00"),
+        isBooked: false,
+      },
+    ],
+  },
+  {
+    id: "event-6",
+    name: "React and Redux: State Management",
+    tagline: "Mastering global state management with Redux.",
+    description:
+      "Explore how Redux provides a solid foundation for managing global state in large-scale React applications.\n\nLearn the principles of actions, reducers, and the Redux store.\n\nWe'll integrate Redux with React, emphasizing patterns like the Context API for prop drilling avoidance.\n\nPractical examples will include using middleware for side effects and architecting a scalable state management solution.\n\nEquip yourself with the skills to maintain clean and predictable state across your React apps.",
+    image:
+      "https://uploads-ssl.webflow.com/61f4510e8113b1209cc00ab0/65d26b8672af01bb6f47f954_cdnimage6.webp",
+    date: new Date("2023-12-05"),
+    times: [
+      {
+        start: new Date("2023-12-05T09:00:00"),
+        end: new Date("2023-12-05T11:00:00"),
+        isBooked: false,
+      },
+    ],
+  },
+  {
+    id: "event-7",
+    name: "Next.js for React Developers",
+    tagline: "Enhancing React with Next.js for server-side rendering.",
+    description:
+      "Next.js takes React to the next level, enabling server-side rendering and static site generation.\n\nDiscover how Next.js improves SEO, performance, and user experience.\n\nWe'll walk through setup, routing, and pre-rendering, along with advanced features like API routes and image optimization.\n\nThis session is your gateway to building more performant and scalable React applications with Next.js.",
+    image:
+      "https://uploads-ssl.webflow.com/61f4510e8113b1209cc00ab0/65d26b86c71e84a616c57f5f_cdnimage1.webp",
+    date: new Date("2023-12-12"),
+    times: [
+      {
+        start: new Date("2023-12-12T09:00:00"),
+        end: new Date("2023-12-12T10:30:00"),
+        isBooked: false,
+      },
+    ],
+  },
+  {
+    id: "event-8",
+    name: "React Performance Optimization",
+    tagline: "Boosting your React app's performance.",
+    description:
+      "In-depth exploration of techniques to optimize React application performance.\n\nLearn about React's reconciliation algorithm, and how to use memoization, lazy loading, and code splitting to reduce load times.\n\nWe'll also cover the Profiler API and how to leverage it for diagnosing performance issues.\n\nPractical tips and strategies will be provided to ensure your React apps are as efficient and responsive as possible.",
+    image:
+      "https://uploads-ssl.webflow.com/61f4510e8113b1209cc00ab0/65d26b868a6e2bcbcee38a68_cdnimage5.webp",
+    date: new Date("2023-12-19"),
+    times: [
+      {
+        start: new Date("2023-12-19T09:00:00"),
+        end: new Date("2023-12-19T10:30:00"),
+        isBooked: false,
+      },
+    ],
+  },
+  {
+    id: "event-9",
+    name: "Building Reusable React Components",
+    tagline: "Creating a scalable React component library.",
+    description:
+      "Learn the art of building reusable React components to streamline your development process.\n\nDiscuss best practices for component design, prop types, and composition.\n\nExplore strategies for creating a scalable component library that can be shared across projects.\n\nThis session will include hands-on examples and tips for maintaining consistency and flexibility in your component architecture.",
+    image:
+      "https://uploads-ssl.webflow.com/61f4510e8113b1209cc00ab0/65d26b8608466597e0867aad_cdnimage4.webp",
+    date: new Date("2024-01-09"),
+    times: [
+      {
+        start: new Date("2024-01-09T09:00:00"),
+        end: new Date("2024-01-09T10:30:00"),
+        isBooked: false,
+      },
+    ],
+  },
+  {
+    id: "event-10",
+    name: "Advanced React Patterns",
+    tagline: "Elevate your React skills with advanced patterns.",
+    description:
+      "Dive into advanced React patterns to solve complex design challenges in your applications.\n\nCovering patterns like Compound Components, Render Props, Higher-Order Components, and Hooks, this session will provide deep insights into their use cases and benefits.\n\nThrough practical examples, learn how these patterns can enhance flexibility, reusability, and simplicity in your React codebase.",
+    image:
+      "https://uploads-ssl.webflow.com/61f4510e8113b1209cc00ab0/65d26b86981519f7edd2331f_cdnimage2.webp",
+    date: new Date("2024-01-16"),
+    times: [
+      {
+        start: new Date("2024-01-16T09:00:00"),
+        end: new Date("2024-01-16T10:30:00"),
+        isBooked: false,
+      },
+    ],
+  },
 ];
 
 let userEvents: Event[] = [];

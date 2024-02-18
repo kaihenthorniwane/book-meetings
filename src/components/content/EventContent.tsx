@@ -13,6 +13,16 @@ import IconClockSmall from "../icons/IconClockSmall";
 import ColorChangingGradient from "./ColorChangingGradient";
 import TopWhiteGradient from "./TopWhiteGradient";
 
+export type EventContentProps = {
+  parsedData: Event;
+  descriptionArray: ParagraphObject[];
+  formattedDate: string;
+  differenceInHours: string;
+  dominantColor: string;
+  themeStyleOptions: ThemeStyleOptions;
+  otherEventHTML: ReactNode;
+};
+
 export default function EventContent({
   parsedData,
   descriptionArray,
@@ -21,15 +31,7 @@ export default function EventContent({
   dominantColor,
   themeStyleOptions,
   otherEventHTML,
-}: {
-  parsedData: Event;
-  descriptionArray: ParagraphObject[];
-  formattedDate: string;
-  differenceInHours: string;
-  dominantColor: string;
-  themeStyleOptions: ThemeStyleOptions;
-  otherEventHTML: ReactNode;
-}) {
+}: EventContentProps) {
   const [scrolledPast, setScrolledPast] = useState<boolean>(false);
   const [secondScrolledPast, setSecondScrolledPast] = useState<boolean>(false);
   const elementRef = useRef<HTMLDivElement>(null);
