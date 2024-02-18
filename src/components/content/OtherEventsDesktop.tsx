@@ -15,7 +15,7 @@ export default function OtherEventsDesktop({
           <span className="font-medium">Prev Event</span>
           <span className="text-3xl">{prevEventItem.name}</span>
         </div>
-        <div className="max-h-32 overflow-hidden relative">
+        <div className="max-h-28 overflow-hidden relative">
           <img
             className="relative mix-blend-luminosity"
             src={prevEventItem.image}
@@ -27,7 +27,7 @@ export default function OtherEventsDesktop({
           <span className="font-medium">Next Event</span>
           <span className="text-3xl">{nextEventItem.name}</span>
         </div>
-        <div className="max-h-32 overflow-hidden relative">
+        <div className="max-h-28 overflow-hidden relative">
           <img
             className="relative mix-blend-luminosity"
             src={nextEventItem.image}
