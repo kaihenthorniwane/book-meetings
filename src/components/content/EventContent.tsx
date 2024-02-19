@@ -153,7 +153,7 @@ export default function EventContent({
                   : " -translate-y-2 opacity-0 ")
               }
             >
-              <span className="truncate">{parsedData.name}</span>
+              <span className="truncate font-medium">{parsedData.name}</span>
             </div>
             <TopWhiteGradient
               opacity={
