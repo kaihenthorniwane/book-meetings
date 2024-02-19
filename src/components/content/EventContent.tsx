@@ -117,7 +117,7 @@ export default function EventContent({
       }}
     >
       <main
-        className="transition-colors"
+        className="transition-colors  duration-700"
         style={{
           backgroundColor: scrolledPast
             ? bgColors["styleTwo"]
@@ -125,7 +125,7 @@ export default function EventContent({
         }}
       >
         <img
-          className="fixed -z-1 left-0 right-0 top-0 transition-opacity"
+          className="fixed -z-1 left-0 right-0 top-0 transition-opacity duration-700"
           style={{
             opacity: scrolledPast
               ? imageOpacities["styleTwo"]
@@ -175,7 +175,7 @@ export default function EventContent({
             />
           </div>
           <div
-            className="bg-brandWhite px-5 pb-12 transition-colors"
+            className="bg-brandWhite px-5 pb-12 transition-colors duration-700"
             ref={elementRef}
             style={scrolledPast ? componentStyleTwo : componentStyleOne}
           >
@@ -230,7 +230,7 @@ export default function EventContent({
             </div>
           </div>
           <div
-            className="transition-colors"
+            className="transition-colors duration-700"
             style={scrolledPast ? componentStyleTwo : componentStyleOne}
           >
             {otherEventHTML}
