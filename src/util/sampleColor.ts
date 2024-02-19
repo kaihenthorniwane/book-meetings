@@ -35,28 +35,21 @@ export function getRelativeLuminance(color: rgbObject): number {
   return a[0] * 0.2126 + a[1] * 0.7152 + a[2] * 0.0722;
 }
 
-export async function getAverageTopColor(
-  imageUrl: string,
-  heightFraction: number = 0.1
-): Promise<rgbObject> {
+export async function getAverageTopColor(imageUrl: string): Promise<rgbObject> {
   const response: Response = await fetch(imageUrl);
   const arrayBuffer: ArrayBuffer = await response.arrayBuffer();
   const buffer: Buffer = Buffer.from(arrayBuffer);
 
-  const metadata: Metadata = await sharp(buffer).metadata();
+  const metadata: sharp.Metadata = await sharp(buffer).metadata();
 
-  if (
-    metadata &&
-    typeof metadata.height === "number" &&
-    typeof metadata.width === "number"
-  ) {
-    const topHeight: number = Math.round(metadata.height * heightFraction);
-
-    const topSliceBuffer: Buffer = await sharp(buffer)
-      .extract({ left: 0, top: 0, width: metadata.width, height: topHeight })
+  if (metadata && typeof metadata.width === "number") {
+    // Extract only the top line of the image
+    const topLineBuffer: Buffer = await sharp(buffer)
+      .extract({ left: 0, top: 0, width: metadata.width, height: 1 })
       .toBuffer();
 
-    const stats: Stats = await sharp(topSliceBuffer).stats();
+    // Get the average color of that line
+    const stats: sharp.Stats = await sharp(topLineBuffer).stats();
     const avg: number[] = stats.channels.map((channel) =>
       Math.round(channel.mean)
     );
@@ -64,12 +57,9 @@ export async function getAverageTopColor(
 
     return rgb;
   } else {
-    throw new Error(
-      "Image metadata is undefined or does not contain height and width"
-    );
+    throw new Error("Image metadata is undefined or does not contain width");
   }
 }
-
 export function makeColorMoreContrasty(
   rgb: rgbObject,
   operation: "lighten" | "darken"
