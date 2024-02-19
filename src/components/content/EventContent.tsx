@@ -56,7 +56,7 @@ export default function EventContent({
 
       const secondThresholdPercentage: number = 15;
 
-      const titleThresholdPercentage: number = 10;
+      const titleThresholdPercentage: number = 5;
 
       const elementRelativeToViewport: DOMRect =
         elementRef.current.getBoundingClientRect();
@@ -78,7 +78,7 @@ export default function EventContent({
         elementRelativeToViewport.top < secondScrollThresholdInPixels;
 
       const titleDidItScrollPastTheThreshold: boolean =
-        titleRelativeToViewport.top + titleRelativeToViewport.height <
+        titleRelativeToViewport.top + titleRelativeToViewport.height / 2 <
         titleScrollThresholdInPixels;
 
       if (didItScrollPastTheThreshold) {
@@ -179,12 +179,11 @@ export default function EventContent({
           >
             <div className="flex flex-col gap-9 -mt-12">
               <div className="flex flex-col gap-5">
-                <div className="flex gap-1 text-base">
+                <div className="flex gap-1 text-base ">
                   <Link href={"/"}> Home </Link>
                   {"/"}
-                  <Link href={"/event/" + parsedData.id}>
-                    {" "}
-                    {parsedData.name}{" "}
+                  <Link className="truncate" href={"/event/" + parsedData.id}>
+                    {parsedData.name}
                   </Link>
                 </div>
                 <span
