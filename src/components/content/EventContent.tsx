@@ -147,7 +147,7 @@ export default function EventContent({
 
             <div
               className={
-                "absolute top-3.5 left-16 right-20 bottom-0 flex justify-center duration-300 transition-transform " +
+                "absolute top-3 left-16 right-20 bottom-0 flex justify-center duration-300 transition-transform " +
                 (titleScrolledPast
                   ? " translate-y-0 opacity-100 "
                   : " -translate-y-2 opacity-0 ")
