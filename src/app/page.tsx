@@ -12,18 +12,24 @@ export default function Home() {
         <div className="flex flex-col gap-3">
           <span className="text-4xl">Available Mentoring Sessions</span>
           <span className="max-w-screen-md">
-            From an one-on-one introduction to React's basics all the way up to
-            a deep dive into state mechanics - we got just the right session for
-            you!
+            From an one-on-one introduction to React&apos;s basics all the way
+            up to a deep dive into state mechanics - we got just the right
+            session for you!
           </span>
         </div>
-        <div className="md:grid md:grid-cols-3 md:gap-10 flex flex-col gap-5">
+        <div className="md:grid md:grid-cols-3 md:gap-10 flex flex-col gap-10">
           {events.map((event) => (
             <div key={event.id}>
-              <div>{event.name}</div>
-              <div>{event.tagline}</div>
-              <Link className="underline" href={"/event/" + event.id}>
-                Page
+              <Link href={"/event/" + event.id}>
+                <div className="flex flex-col gap-5">
+                  <div className="overflow-hidden h-32">
+                    <img src={event.image} />
+                  </div>
+                  <div className="flex flex-col gap-1">
+                    <span className="text-2xl">{event.name}</span>
+                    <span>{event.tagline}</span>
+                  </div>
+                </div>
               </Link>
             </div>
           ))}
