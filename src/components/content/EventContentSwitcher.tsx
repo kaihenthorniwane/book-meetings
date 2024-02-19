@@ -27,7 +27,7 @@ export default function EventContentSwitcher({
   return (
     <>
       {isMobile ? (
-        <EventContent {...props} />
+        <EventContent {...props} otherEventHTML={nextAndPrevEventHTML} />
       ) : (
         <EventContentDesktop {...props} otherEventHTML={nextAndPrevEventHTML} />
       )}
