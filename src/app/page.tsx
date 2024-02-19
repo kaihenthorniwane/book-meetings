@@ -81,7 +81,7 @@ export default async function Home() {
               href={"/event/" + eventItem.id}
               className="flex flex-col h-full"
             >
-              <div className="overflow-hidden h-32">
+              <div className="overflow-hidden h-48">
                 <img src={eventItem.image} />
               </div>
               <div
