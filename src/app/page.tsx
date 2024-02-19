@@ -74,7 +74,7 @@ export default async function Home() {
             session for you!
           </span>
         </div>
-        <div className="md:grid md:grid-cols-2 md:gap-10 lg:grid-cols-3  flex flex-col gap-10">
+        <div className="md:grid md:grid-cols-2 md:gap-10 lg:grid-cols-3  flex flex-col gap-5">
           {eventsWithColorsResolved.map((eventItem) => (
             <Link
               key={eventItem.id}
