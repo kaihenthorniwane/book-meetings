@@ -34,7 +34,9 @@ export default function EventContent({
 }: EventContentProps) {
   const [scrolledPast, setScrolledPast] = useState<boolean>(false);
   const [secondScrolledPast, setSecondScrolledPast] = useState<boolean>(false);
+  const [titleScrolledPast, setTitleScrolledPast] = useState<boolean>(false);
   const elementRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLSpanElement>(null);
 
   const {
     componentStyleOne,
@@ -48,25 +50,36 @@ export default function EventContent({
 
   useEffect(() => {
     const handleScroll = () => {
-      if (!elementRef.current) return;
+      if (!elementRef.current || !titleRef.current) return;
 
       const thresholdPercentage: number = 40;
 
       const secondThresholdPercentage: number = 15;
 
+      const titleThresholdPercentage: number = 10;
+
       const elementRelativeToViewport: DOMRect =
         elementRef.current.getBoundingClientRect();
+      const titleRelativeToViewport: DOMRect =
+        titleRef.current.getBoundingClientRect();
+
       const viewportHeight: number = window.innerHeight;
       const scrollThresholdInPixels: number =
         (thresholdPercentage / 100) * viewportHeight;
       const secondScrollThresholdInPixels: number =
         (secondThresholdPercentage / 100) * viewportHeight;
+      const titleScrollThresholdInPixels: number =
+        (titleThresholdPercentage / 100) * viewportHeight;
 
       const didItScrollPastTheThreshold: boolean =
         elementRelativeToViewport.top < scrollThresholdInPixels;
 
       const secondDidItScrollPastTheThreshold: boolean =
         elementRelativeToViewport.top < secondScrollThresholdInPixels;
+
+      const titleDidItScrollPastTheThreshold: boolean =
+        titleRelativeToViewport.top + titleRelativeToViewport.height <
+        titleScrollThresholdInPixels;
 
       if (didItScrollPastTheThreshold) {
         setScrolledPast(true);
@@ -78,6 +91,12 @@ export default function EventContent({
         setSecondScrolledPast(true);
       } else {
         setSecondScrolledPast(false);
+      }
+
+      if (titleDidItScrollPastTheThreshold) {
+        setTitleScrolledPast(true);
+      } else {
+        setTitleScrolledPast(false);
       }
     };
 
@@ -115,7 +134,7 @@ export default function EventContent({
           src={parsedData.image}
         />
         <div className="flex flex-col relative">
-          <div className="fixed left-0 right-0 top-0 flex justify-between px-5 py-3">
+          <div className="fixed z-10 left-0 right-0 top-0 flex justify-between px-5 py-4">
             <Link href="/" className="relative">
               <IconBackArrow
                 color={
@@ -123,6 +142,19 @@ export default function EventContent({
                 }
               />
             </Link>
+
+            <div></div>
+
+            <div
+              className={
+                "absolute top-3.5 left-16 right-20 bottom-0 flex justify-center duration-300 transition-transform " +
+                (titleScrolledPast
+                  ? " translate-y-0 opacity-100 "
+                  : " -translate-y-2 opacity-0 ")
+              }
+            >
+              <span className="truncate">{parsedData.name}</span>
+            </div>
             <TopWhiteGradient
               opacity={
                 secondScrolledPast
@@ -155,7 +187,17 @@ export default function EventContent({
                     {parsedData.name}{" "}
                   </Link>
                 </div>
-                <span className="text-4xl">{parsedData.name}</span>
+                <span
+                  className={
+                    "text-4xl transition-transform duration-300 relative " +
+                    (titleScrolledPast
+                      ? " opacity-0 -translate-y-4 "
+                      : " opacity-100 translate-y-0")
+                  }
+                  ref={titleRef}
+                >
+                  {parsedData.name}
+                </span>
                 <div className="flex gap-4 font-medium">
                   <div className="flex gap-2 items-center leading-none">
                     <IconCalendarSmall

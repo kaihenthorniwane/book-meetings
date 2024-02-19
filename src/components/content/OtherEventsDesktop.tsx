@@ -12,7 +12,7 @@ export default function OtherEventsDesktop({
   color?: string;
 }) {
   return (
-    <div className="flex gap-10">
+    <div className="flex gap-10 mb-10">
       <Link
         href={"/event/" + prevEventItem.id}
         className="flex flex-col gap-5 relative"
