@@ -9,7 +9,7 @@ export default function IconBackArrow({
       height="22"
       viewBox="0 0 26 22"
       fill="none"
-      className="transition-colors duration-700"
+      className="transition-colors duration-500"
       stroke={color}
       xmlns="http://www.w3.org/2000/svg"
     >

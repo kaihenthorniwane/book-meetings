@@ -30,7 +30,7 @@ export default function ColorChangingGradient({
       <g mask="url(#mask0_244_5573)" className="w-full">
         <path
           d="M375 148L0 148L1.29386e-05 -7.03433e-06L375 2.57492e-05L375 148Z"
-          className="transition-colors duration-700"
+          className="transition-colors duration-500"
           fill={color}
         />
       </g>
