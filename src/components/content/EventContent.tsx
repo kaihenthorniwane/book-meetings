@@ -52,7 +52,7 @@ export default function EventContent({
     const handleScroll = () => {
       if (!elementRef.current || !titleRef.current) return;
 
-      const thresholdPercentage: number = 40;
+      const thresholdPercentage: number = 25;
 
       const secondThresholdPercentage: number = 15;
 
