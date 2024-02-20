@@ -23,7 +23,10 @@ export default function EventContentDesktop({
         backgroundColor: bgColors["styleOne"],
       }}
     >
-      <UserSessionsNavbar color={componentStyleOne.color} />
+      <UserSessionsNavbar
+        color={componentStyleOne.color}
+        bgColor={componentStyleOne.backgroundColor}
+      />
       <main
         className="max-w-screen-xl transition-colors mx-10 flex flex-col gap-16"
         style={componentStyleOne}

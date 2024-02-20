@@ -65,37 +65,39 @@ export default async function Home() {
 
   return (
     <DefaultLayout>
-      <div className="flex flex-col gap-10">
-        <div className="flex flex-col gap-3">
-          <span className="text-4xl">Available Mentoring Sessions</span>
+      <div className="flex flex-col gap-3">
+        <span className="text-4xl sticky top-5">
+          Available Mentoring Sessions
+        </span>
+        <div className="flex flex-col gap-10">
           <span className="max-w-screen-md">
             From an one-on-one introduction to React&apos;s basics all the way
             up to a deep dive into state mechanics - we got just the right
             session for you!
           </span>
-        </div>
-        <div className="md:grid md:grid-cols-2 md:gap-10 lg:grid-cols-3  flex flex-col gap-5">
-          {eventsWithColorsResolved.map((eventItem) => (
-            <Link
-              key={eventItem.id}
-              href={"/event/" + eventItem.id}
-              className="flex flex-col  rounded-xl overflow-hidden "
-            >
-              <div className="overflow-hidden h-48 min-h-48">
-                <img src={eventItem.image} />
-              </div>
-              <div
-                className="flex flex-col gap-1 p-5 flex-grow"
-                style={{
-                  backgroundColor: "rgb(" + eventItem.bgColor + ")",
-                  color: eventItem.textColor,
-                }}
+          <div className="md:grid md:grid-cols-2 md:gap-10 lg:grid-cols-3  flex flex-col gap-5">
+            {eventsWithColorsResolved.map((eventItem) => (
+              <Link
+                key={eventItem.id}
+                href={"/event/" + eventItem.id}
+                className="flex flex-col  rounded-xl overflow-hidden "
               >
-                <span className="text-2xl">{eventItem.name}</span>
-                <span>{eventItem.tagline}</span>
-              </div>
-            </Link>
-          ))}
+                <div className="overflow-hidden h-48 min-h-48">
+                  <img src={eventItem.image} />
+                </div>
+                <div
+                  className="flex flex-col gap-1 p-5 flex-grow"
+                  style={{
+                    backgroundColor: "rgb(" + eventItem.bgColor + ")",
+                    color: eventItem.textColor,
+                  }}
+                >
+                  <span className="text-2xl">{eventItem.name}</span>
+                  <span>{eventItem.tagline}</span>
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
     </DefaultLayout>
