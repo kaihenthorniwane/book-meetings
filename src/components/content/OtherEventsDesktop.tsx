@@ -1,4 +1,4 @@
-import { type Event } from "@/context/user-sessions-context";
+import { type EventInfo } from "@/context/user-sessions-context";
 import Link from "next/link";
 import ColorChangingGradient from "./ColorChangingGradient";
 
@@ -6,8 +6,8 @@ export default function OtherEventsDesktop({
   prevEventItem,
   nextEventItem,
 }: {
-  prevEventItem: Event;
-  nextEventItem: Event;
+  prevEventItem: EventInfo;
+  nextEventItem: EventInfo;
 }) {
   return (
     <div className="flex flex-col md:p-0 md:flex-row md:gap-2 gap-5 mb-10 p-5">

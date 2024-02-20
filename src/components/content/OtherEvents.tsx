@@ -1,7 +1,7 @@
-import { type Event } from "@/context/user-sessions-context";
+import { type EventInfo } from "@/context/user-sessions-context";
 import Link from "next/link";
 
-export default function OtherEvents({ eventItem }: { eventItem: Event }) {
+export default function OtherEvents({ eventItem }: { eventItem: EventInfo }) {
   return (
     // <Link href={"/event/" + eventItem.id} className="flex flex-col ">
     //   <div className="flex flex-col gap-4 p-5">

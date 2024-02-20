@@ -1,20 +1,6 @@
-type EventTime = {
-  start: Date;
-  end: Date;
-  isBooked: boolean;
-};
+import { EventInfo } from "@/context/user-sessions-context";
 
-type Event = {
-  id: string;
-  name: string;
-  tagline: string;
-  description: string;
-  image: string;
-  date: Date;
-  times: EventTime[];
-};
-
-let events: Event[] = [
+let events: EventInfo[] = [
   {
     id: "event-0",
     name: "Kickstart with React: Personal Intro",
@@ -26,6 +12,7 @@ let events: Event[] = [
     date: new Date("2023-10-31"),
     times: [
       {
+        id: "event-time-0",
         start: new Date("2023-10-31T09:00:00"),
         end: new Date("2023-10-31T10:00:00"),
         isBooked: false,
@@ -43,6 +30,7 @@ let events: Event[] = [
     date: new Date("2023-11-07"),
     times: [
       {
+        id: "event-time-1",
         start: new Date("2023-11-07T09:00:00"),
         end: new Date("2023-11-07T10:30:00"),
         isBooked: false,
@@ -60,6 +48,7 @@ let events: Event[] = [
     date: new Date("2023-11-14"),
     times: [
       {
+        id: "event-time-2",
         start: new Date("2023-11-14T09:00:00"),
         end: new Date("2023-11-14T11:00:00"),
         isBooked: false,
@@ -77,6 +66,7 @@ let events: Event[] = [
     date: new Date("2023-11-21"),
     times: [
       {
+        id: "event-time-3",
         start: new Date("2023-11-21T09:00:00"),
         end: new Date("2023-11-21T10:30:00"),
         isBooked: false,
@@ -94,6 +84,7 @@ let events: Event[] = [
     date: new Date("2023-11-28"),
     times: [
       {
+        id: "event-time-4",
         start: new Date("2023-11-28T09:00:00"),
         end: new Date("2023-11-28T10:30:00"),
         isBooked: false,
@@ -111,6 +102,7 @@ let events: Event[] = [
     date: new Date("2023-12-05"),
     times: [
       {
+        id: "event-time-5",
         start: new Date("2023-12-05T09:00:00"),
         end: new Date("2023-12-05T11:00:00"),
         isBooked: false,
@@ -128,6 +120,7 @@ let events: Event[] = [
     date: new Date("2023-12-12"),
     times: [
       {
+        id: "event-time-6",
         start: new Date("2023-12-12T09:00:00"),
         end: new Date("2023-12-12T10:30:00"),
         isBooked: false,
@@ -145,6 +138,7 @@ let events: Event[] = [
     date: new Date("2023-12-19"),
     times: [
       {
+        id: "event-time-8",
         start: new Date("2023-12-19T09:00:00"),
         end: new Date("2023-12-19T10:30:00"),
         isBooked: false,
@@ -162,6 +156,7 @@ let events: Event[] = [
     date: new Date("2024-01-09"),
     times: [
       {
+        id: "event-time-9",
         start: new Date("2024-01-09T09:00:00"),
         end: new Date("2024-01-09T10:30:00"),
         isBooked: false,
@@ -179,6 +174,7 @@ let events: Event[] = [
     date: new Date("2024-01-16"),
     times: [
       {
+        id: "event-time-10",
         start: new Date("2024-01-16T09:00:00"),
         end: new Date("2024-01-16T10:30:00"),
         isBooked: false,
@@ -187,15 +183,17 @@ let events: Event[] = [
   },
 ];
 
-let userEvents: Event[] = [];
+let userEvents: EventInfo[] = [];
 
 // function to get events
 export const getEvents = () => {
   return events;
 };
 
-export function getEventUsingID(id: string): Event | { error: string } {
-  const foundEvent: Event | undefined = events.find((event) => event.id === id);
+export function getEventUsingID(id: string): EventInfo | { error: string } {
+  const foundEvent: EventInfo | undefined = events.find(
+    (event) => event.id === id
+  );
   if (foundEvent) {
     return foundEvent;
   } else {
@@ -205,7 +203,7 @@ export function getEventUsingID(id: string): Event | { error: string } {
 
 export const getEventAfterTheOneWithID = (
   id: string
-): Event | { error: string } => {
+): EventInfo | { error: string } => {
   const index = events.findIndex((event) => event.id === id);
 
   // Check if the event with the given ID was found and is not the last in the array
@@ -220,7 +218,7 @@ export const getEventAfterTheOneWithID = (
 
 export const getEventBeforeTheOneWithID = (
   id: string
-): Event | { error: string } => {
+): EventInfo | { error: string } => {
   const index = events.findIndex((event) => event.id === id);
 
   // Check if the event with the given ID was found and is not the first in the array
@@ -239,8 +237,10 @@ export const getUserEvents = () => {
   return events;
 };
 
-export const getUserEventUsingID = (id: string): Event | { error: string } => {
-  const foundEvent: Event | undefined = userEvents.find(
+export const getUserEventUsingID = (
+  id: string
+): EventInfo | { error: string } => {
+  const foundEvent: EventInfo | undefined = userEvents.find(
     (event) => event.id === id
   );
   if (foundEvent) {
@@ -250,6 +250,6 @@ export const getUserEventUsingID = (id: string): Event | { error: string } => {
   }
 };
 
-export const addUserevent = (item: Event) => {
+export const addUserevent = (item: EventInfo) => {
   events.push(item);
 };

@@ -1,15 +1,22 @@
+import { ComponentPropsWithoutRef } from "react";
+
+type IconBackArrowProps = {
+  className?: string;
+  color?: string;
+} & ComponentPropsWithoutRef<"svg">;
+
 export default function IconBackArrow({
   color = "var(--Brand-Black)",
-}: {
-  color?: string;
-}) {
+  className = "transition-colors duration-500",
+  ...props
+}: IconBackArrowProps) {
   return (
     <svg
       width="26"
       height="22"
       viewBox="0 0 26 22"
       fill="none"
-      className="transition-colors duration-500"
+      className={className}
       stroke={color}
       xmlns="http://www.w3.org/2000/svg"
     >

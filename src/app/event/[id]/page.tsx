@@ -2,7 +2,10 @@ import EventContent from "@/components/content/EventContent";
 import EventContentSwitcher from "@/components/content/EventContentSwitcher";
 import OtherEvents from "@/components/content/OtherEvents";
 import OtherEventsDesktop from "@/components/content/OtherEventsDesktop";
-import { type Event, type EventTime } from "@/context/user-sessions-context";
+import {
+  type EventInfo,
+  type EventTime,
+} from "@/context/user-sessions-context";
 import {
   getEventAfterTheOneWithID,
   getEventBeforeTheOneWithID,
@@ -49,7 +52,7 @@ export default async function Page({ params }: { params: { id: string } }) {
   if ("error" in eventData) {
     return <>An error occured</>;
   }
-  const parsedData: Event = eventData;
+  const parsedData: EventInfo = eventData;
 
   const date: Date = new Date(parsedData.date);
   const formattedDate: string = date.toLocaleDateString("en-US", {
@@ -178,9 +181,8 @@ export default async function Page({ params }: { params: { id: string } }) {
     iconColors,
   };
 
-  const nextEventItem: Event | { error: string } = getEventAfterTheOneWithID(
-    params.id
-  );
+  const nextEventItem: EventInfo | { error: string } =
+    getEventAfterTheOneWithID(params.id);
 
   const otherEventHTML: ReactNode =
     "error" in nextEventItem ? (
@@ -189,9 +191,8 @@ export default async function Page({ params }: { params: { id: string } }) {
       <OtherEvents eventItem={nextEventItem} />
     );
 
-  const prevEventItem: Event | { error: string } = getEventBeforeTheOneWithID(
-    params.id
-  );
+  const prevEventItem: EventInfo | { error: string } =
+    getEventBeforeTheOneWithID(params.id);
 
   const nextAndPrevEventHTML: ReactNode =
     "error" in prevEventItem || "error" in nextEventItem ? (

@@ -4,17 +4,18 @@ import {
   type ThemeStyleOptions,
   type ParagraphObject,
 } from "@/app/event/[id]/page";
-import { type Event } from "@/context/user-sessions-context";
+import { type EventInfo } from "@/context/user-sessions-context";
 import Link from "next/link";
 import { useEffect, useRef, useState, ReactNode } from "react";
 import IconBackArrow from "../icons/IconBackArrow";
 import IconCalendarSmall from "../icons/IconCalendarSmall";
 import IconClockSmall from "../icons/IconClockSmall";
+import UserSessionsCountButton from "../user-sessions/UserSessionsCountButton";
 import ColorChangingGradient from "./ColorChangingGradient";
 import TopWhiteGradient from "./TopWhiteGradient";
 
 export type EventContentProps = {
-  parsedData: Event;
+  parsedData: EventInfo;
   descriptionArray: ParagraphObject[];
   formattedDate: string;
   differenceInHours: string;
@@ -135,19 +136,35 @@ export default function EventContent({
         />
         <div className="flex flex-col relative">
           <div className="fixed z-10 left-0 right-0 top-0 flex justify-between px-5 py-4">
-            <Link href="/" className="relative">
+            <Link href="/" className="relative flex items-center gap-2">
               <IconBackArrow
                 color={
                   scrolledPast ? iconColors["styleTwo"] : iconColors["styleOne"]
                 }
               />
+              <span
+                className={
+                  "leading-none font-medium transition-transform " +
+                  (titleScrolledPast
+                    ? " translate-y-2 opacity-0 "
+                    : " translate-y-0 opacity-100 ")
+                }
+              >
+                Home
+              </span>
             </Link>
 
-            <div></div>
+            <div className="flex -mt-[0.15rem]">
+              <UserSessionsCountButton
+                color={
+                  scrolledPast ? iconColors["styleTwo"] : iconColors["styleOne"]
+                }
+              />
+            </div>
 
             <div
               className={
-                "absolute top-[1.0625rem] left-16 right-20 bottom-0 flex justify-center duration-300 transition-transform " +
+                "absolute top-[1.125rem] left-16 right-20 bottom-0 flex justify-center duration-300 transition-transform " +
                 (titleScrolledPast
                   ? " translate-y-0 opacity-100 "
                   : " -translate-y-2 opacity-0 ")

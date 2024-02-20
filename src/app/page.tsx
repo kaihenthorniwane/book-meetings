@@ -1,4 +1,4 @@
-import { type Event } from "@/context/user-sessions-context";
+import { type EventInfo } from "@/context/user-sessions-context";
 import Link from "next/link";
 import DefaultLayout from "@/components/layouts/DefaultLayout";
 import { getEvents } from "@/store/dataStore";
@@ -12,10 +12,10 @@ import {
 import { unstable_cache } from "next/cache";
 const getCachedDominantColor = unstable_cache(getDominantColor);
 
-type EventAndColor = Event & { bgColor: string; textColor: string };
+type EventAndColor = EventInfo & { bgColor: string; textColor: string };
 
 export default async function Home() {
-  const events: Event[] = getEvents();
+  const events: EventInfo[] = getEvents();
 
   const eventsWithColors: Promise<EventAndColor[]> = Promise.all(
     events.map(async (eventItem) => {

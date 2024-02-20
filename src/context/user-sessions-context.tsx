@@ -1,12 +1,13 @@
 import { createContext, useReducer, type ReactNode } from "react";
 
 export type EventTime = {
+  id: string;
   start: Date;
   end: Date;
   isBooked: boolean;
 };
 
-export type Event = {
+export type EventInfo = {
   id: string;
   name: string;
   tagline: string;
@@ -16,42 +17,64 @@ export type Event = {
   times: EventTime[];
 };
 
+type BookedEventReference = {
+  eventID: string;
+  timeID: string;
+};
+
 type UserEventsContextState = {
-  events: Event[];
+  eventReferences: BookedEventReference[];
 };
 
 type UserEventsContextValue = UserEventsContextState & {
-  getEvents: () => void;
+  addEventByID: (eventReference: BookedEventReference) => void;
+  removeEventByID: (eventReference: BookedEventReference) => void;
 };
 
 type UserEventsContextProviderProps = {
   children: ReactNode;
 };
 
-type ActionRefreshEvents = {
-  mode: "REFRESH_EVENTS";
-};
-
 type ActionAddEventByID = {
   mode: "ADD_EVENT";
+  payload?: BookedEventReference;
 };
 
 type ActionRemoveByID = {
-  mode: "REFRESH_EVENTS";
+  mode: "REMOVE_EVENT";
+  payload?: BookedEventReference;
 };
 
-type Action = ActionRefreshEvents;
+type Action = ActionAddEventByID | ActionRemoveByID;
 
 const UserEventsContext = createContext<UserEventsContextValue | null>(null);
 
 const initialState: UserEventsContextState = {
-  events: [],
+  eventReferences: [],
 };
 
 function reducer(
   state: UserEventsContextState,
   action: Action
 ): UserEventsContextState {
+  if (action.mode === "ADD_EVENT" && action.payload) {
+    const eventReferenceToAdd: BookedEventReference = action.payload;
+    return {
+      ...state,
+      eventReferences: [...state.eventReferences, eventReferenceToAdd],
+    };
+  }
+  if (action.mode === "REMOVE_EVENT" && action.payload) {
+    const eventReferenceToCheck: BookedEventReference = action.payload;
+    const filteredEvents: BookedEventReference[] = state.eventReferences.filter(
+      (eventReference) =>
+        !(
+          eventReference.eventID === eventReferenceToCheck.eventID &&
+          eventReference.eventID === eventReferenceToCheck.timeID
+        )
+    );
+    return { ...state, eventReferences: filteredEvents };
+  }
   return state;
 }
 
@@ -61,8 +84,13 @@ export default function UserEventsContextProvider(
   const [eventsState, dispatch] = useReducer(reducer, initialState);
 
   const userEventsContextProviderInput: UserEventsContextValue = {
-    events: eventsState.events,
-    getEvents: () => {},
+    eventReferences: eventsState.eventReferences,
+    addEventByID: (eventReference: BookedEventReference) => {
+      dispatch({ mode: "ADD_EVENT", payload: eventReference });
+    },
+    removeEventByID: (eventReference: BookedEventReference) => {
+      dispatch({ mode: "REMOVE_EVENT", payload: eventReference });
+    },
   };
 
   return (
