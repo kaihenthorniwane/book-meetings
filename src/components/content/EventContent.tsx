@@ -173,10 +173,10 @@ export default function EventContent({
 
             <div
               className={
-                "absolute z-0 top-[1.125rem] left-16 right-20 bottom-0 flex justify-center duration-300 transition-transform " +
+                "absolute z-10 top-[1.125rem] left-16 right-20 bottom-0 flex justify-center duration-300 transition-transform " +
                 (titleScrolledPast
-                  ? " translate-y-0 opacity-100 block"
-                  : " -translate-y-2 opacity-0 hidden")
+                  ? " translate-y-0 opacity-100"
+                  : " -translate-y-2 opacity-0 max-w-0")
               }
             >
               <span className="truncate font-medium leading-none">
