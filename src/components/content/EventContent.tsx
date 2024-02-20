@@ -149,6 +149,11 @@ export default function EventContent({
                     ? " translate-y-2 opacity-0 "
                     : " translate-y-0 opacity-100 ")
                 }
+                style={{
+                  color: scrolledPast
+                    ? iconColors["styleTwo"]
+                    : iconColors["styleOne"],
+                }}
               >
                 Home
               </span>
