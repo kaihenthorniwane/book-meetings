@@ -3,6 +3,7 @@
 import Link from "next/link";
 import IconCalendarSmall from "../icons/IconCalendarSmall";
 import IconClockSmall from "../icons/IconClockSmall";
+import UserSessionsNavbar from "../user-sessions/UserSessionsNavbar";
 import { type EventContentProps } from "./EventContent";
 
 export default function EventContentDesktop({
@@ -22,8 +23,9 @@ export default function EventContentDesktop({
         backgroundColor: bgColors["styleOne"],
       }}
     >
+      <UserSessionsNavbar color={componentStyleOne.color} />
       <main
-        className="max-w-screen-xl transition-colors mt-16 mx-10 flex flex-col gap-16"
+        className="max-w-screen-xl transition-colors mx-10 flex flex-col gap-16"
         style={componentStyleOne}
       >
         <div className=" grid grid-cols-2 gap-10">
@@ -34,12 +36,11 @@ export default function EventContentDesktop({
           >
             <div className="flex flex-col gap-9">
               <div className="flex flex-col gap-5">
-                <div className="flex gap-1 text-base">
+                <div className="flex gap-1.5 text-base">
                   <Link href={"/"}> Home </Link>
                   {"/"}
                   <Link href={"/event/" + parsedData.id}>
-                    {" "}
-                    {parsedData.name}{" "}
+                    {parsedData.name}
                   </Link>
                 </div>
                 <span className="text-4xl">{parsedData.name}</span>

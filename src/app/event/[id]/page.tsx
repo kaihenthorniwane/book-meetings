@@ -1,4 +1,3 @@
-import EventContent from "@/components/content/EventContent";
 import EventContentSwitcher from "@/components/content/EventContentSwitcher";
 import OtherEvents from "@/components/content/OtherEvents";
 import OtherEventsDesktop from "@/components/content/OtherEventsDesktop";
@@ -16,7 +15,6 @@ import {
   getAverageTopColor,
   getDominantColor,
   getRelativeLuminance,
-  makeColorMoreContrasty,
   makeColorMoreContrastyPreservingSaturation,
   type rgbObject,
 } from "@/util/sampleColor";
