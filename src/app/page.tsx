@@ -66,7 +66,7 @@ export default async function Home() {
   return (
     <DefaultLayout>
       <div className="flex flex-col gap-3">
-        <span className="text-4xl sticky top-5">
+        <span className="text-4xl md:sticky md:top-5 md:z-50">
           Available Mentoring Sessions
         </span>
         <div className="flex flex-col gap-10">

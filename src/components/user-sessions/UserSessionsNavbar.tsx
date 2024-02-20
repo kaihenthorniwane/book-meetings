@@ -15,7 +15,7 @@ export default function UserSessionsNavbar({
   return (
     <div
       className={
-        "w-full top-0 flex justify-center px-10 mb-7 " +
+        "z-10 w-full top-0 flex justify-center px-10 mb-7 " +
         (variant === "sticky" ? " sticky" : " fixed left-0 right-0")
       }
       style={{ color: color }}
