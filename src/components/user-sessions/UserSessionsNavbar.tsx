@@ -15,14 +15,14 @@ export default function UserSessionsNavbar({
   return (
     <div
       className={
-        "z-10 w-full top-0 flex justify-center px-10 mb-7 " +
+        "z-10 w-full top-0 flex justify-center md:px-10 md:py-0 px-5 py-3 mb-7 " +
         (variant === "sticky" ? " sticky" : " fixed left-0 right-0")
       }
       style={{ color: color }}
     >
       <div
         className={
-          "flex items-center font-medium w-full max-w-screen-xl py-7 " +
+          "flex items-center font-medium w-full max-w-screen-xl md:py-7 " +
           (variant === "sticky" ? " justify-between" : " justify-end")
         }
       >

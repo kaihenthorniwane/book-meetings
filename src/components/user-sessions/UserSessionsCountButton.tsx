@@ -11,10 +11,11 @@ export default function UserSessionsCountButton({
     <div className="flex items-center gap-2">
       <UserEventCalendarIcon color={color} />
       <span
-        className="leading-none font-medium transition-colors duration-500"
+        className="leading-none flex gap-1 font-medium transition-colors duration-500"
         style={{ color: color }}
       >
-        {"2" + (variant === "desktop" ? " upcoming sessions" : "")}
+        <span>2</span>
+        <span className="md:block hidden"> upcoming sessions</span>
       </span>
     </div>
   );
