@@ -149,13 +149,17 @@ export default function EventContent({
                     ? " translate-y-2 opacity-0 "
                     : " translate-y-0 opacity-100 ")
                 }
-                style={{
-                  color: scrolledPast
-                    ? iconColors["styleTwo"]
-                    : iconColors["styleOne"],
-                }}
               >
-                Home
+                <span
+                  className="transition-colors duration-500"
+                  style={{
+                    color: scrolledPast
+                      ? iconColors["styleTwo"]
+                      : iconColors["styleOne"],
+                  }}
+                >
+                  Home
+                </span>
               </span>
             </Link>
 
@@ -169,10 +173,10 @@ export default function EventContent({
 
             <div
               className={
-                "absolute top-[1.125rem] left-16 right-20 bottom-0 flex justify-center duration-300 transition-transform " +
+                "absolute z-0 top-[1.125rem] left-16 right-20 bottom-0 flex justify-center duration-300 transition-transform " +
                 (titleScrolledPast
-                  ? " translate-y-0 opacity-100 "
-                  : " -translate-y-2 opacity-0 ")
+                  ? " translate-y-0 opacity-100 block"
+                  : " -translate-y-2 opacity-0 hidden")
               }
             >
               <span className="truncate font-medium leading-none">
