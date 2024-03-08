@@ -7,6 +7,7 @@ import {
 import { type EventInfo } from "@/context/user-sessions-context";
 import Link from "next/link";
 import { useEffect, useRef, useState, ReactNode } from "react";
+import BookASessionDrawer from "../drawer/BookASessionDrawer";
 import IconBackArrow from "../icons/IconBackArrow";
 import IconCalendarSmall from "../icons/IconCalendarSmall";
 import IconClockSmall from "../icons/IconClockSmall";
@@ -36,6 +37,7 @@ export default function EventContent({
   const [scrolledPast, setScrolledPast] = useState<boolean>(false);
   const [secondScrolledPast, setSecondScrolledPast] = useState<boolean>(false);
   const [titleScrolledPast, setTitleScrolledPast] = useState<boolean>(false);
+  const [showDrawer, setShowDrawer] = useState<boolean>(false);
   const elementRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLSpanElement>(null);
 
@@ -112,6 +114,8 @@ export default function EventContent({
     };
   }, []);
 
+  const handleShowDrawer = (): void => setShowDrawer(true);
+
   return (
     <body
       className="text-xl font-body text-brandBlack"
@@ -121,6 +125,13 @@ export default function EventContent({
           : bodyColors["styleOne"],
       }}
     >
+      {showDrawer && (
+        <BookASessionDrawer
+          formattedDate={formattedDate}
+          differenceInHours={differenceInHours}
+          parsedData={parsedData}
+        />
+      )}
       <main
         className="transition-colors  duration-500"
         style={{
@@ -141,6 +152,7 @@ export default function EventContent({
         <div className="flex flex-col relative">
           <div className="fixed left-0 bottom-0 right-0 flex p-5 z-10">
             <button
+              onClick={handleShowDrawer}
               className="flex w-full transition-colors duration-500 relative rounded-full "
               style={scrolledPast ? CTABGStyleTwo : CTABGStyleOne}
             >

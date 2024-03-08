@@ -12,6 +12,9 @@ const config: Config = {
       brandWhite: "var(--Brand-White)",
     },
     extend: {
+      fontSize: {
+        "2.5xl": "1.75rem",
+      },
       fontFamily: {
         body: ["indivisible", "sans-serif"],
       },
@@ -21,6 +24,5 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
 };
 export default config;

@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@headlessui/tailwindcss": "^0.2.0",
     "next": "14.1.0",
     "node-fetch": "^3.3.2",
     "react": "^18",
