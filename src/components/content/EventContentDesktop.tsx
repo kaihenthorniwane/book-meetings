@@ -65,7 +65,7 @@ export default function EventContentDesktop({
                 </div>
               </div>
               <button
-                className="flex w-full max-w-80 transition-colors duration-500 relative rounded-full "
+                className="flex w-full max-w-60 transition-colors duration-500 relative rounded-full "
                 style={CTABGStyleOne}
               >
                 <div
