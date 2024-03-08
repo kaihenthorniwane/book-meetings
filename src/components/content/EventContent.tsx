@@ -42,6 +42,9 @@ export default function EventContent({
   const {
     componentStyleOne,
     componentStyleTwo,
+    CTABGStyleOne,
+    CTABGStyleTwo,
+    CTATextColors,
     bgColors,
     bodyColors,
     imageOpacities,
@@ -136,6 +139,60 @@ export default function EventContent({
           src={parsedData.image}
         />
         <div className="flex flex-col relative">
+          <div className="fixed left-0 bottom-0 right-0 flex p-5 z-10">
+            <button
+              className="flex w-full transition-colors duration-500 relative rounded-full "
+              style={scrolledPast ? CTABGStyleTwo : CTABGStyleOne}
+            >
+              <div
+                className="absolute left-0 top-0 right-0 bottom-0 flex justify-center items-center font-medium z-50"
+                style={{
+                  color: scrolledPast
+                    ? CTATextColors.styleTwo
+                    : CTATextColors.styleOne,
+                }}
+              >
+                Book a Session
+              </div>
+              <svg
+                width="23"
+                height="56"
+                viewBox="0 0 23 56"
+                fill="currentColor"
+                className="min-h-14 min-w-[1.4375rem] aspect-[23/56]"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M0 22.54V33.46C0 41.4329 0 45.4193 1.57621 48.4536C2.90447 51.0106 4.98935 53.0955 7.54636 54.4238C10.5807 56 15.0271 56 23 56L23 0C15.0271 0 10.5807 0 7.54636 1.57621C4.98935 2.90447 2.90447 4.98935 1.57621 7.54636C0 10.5807 0 14.5671 0 22.54Z" />
+              </svg>
+              <svg
+                preserveAspectRatio="none"
+                viewBox="0 0 195 56"
+                fill="currentColor"
+                className="max-h-14 h-14 w-full"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect width="195" height="56" />
+              </svg>
+              <svg
+                width="23"
+                height="56"
+                viewBox="0 0 23 56"
+                fill="currentColor"
+                className="min-h-14 min-w-[1.4375rem] aspect-[23/56]"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M23 22.54V33.46C23 41.4329 23 45.4193 21.4238 48.4536C20.0955 51.0106 18.0106 53.0955 15.4536 54.4238C12.4193 56 7.97287 56 0 56L1.52588e-05 0C7.97289 0 12.4193 0 15.4536 1.57621C18.0106 2.90447 20.0955 4.98935 21.4238 7.54636C23 10.5807 23 14.5671 23 22.54Z" />
+              </svg>
+            </button>
+            <ColorChangingGradient
+              color={
+                scrolledPast
+                  ? "var(--Brand-White)"
+                  : "rgb(" + dominantColor + ")"
+              }
+              className="absolute left-0 right-0 bottom-0 top-0 z-[-1]"
+            />
+          </div>
           <div className="fixed z-10 left-0 right-0 top-0 flex justify-between px-5 py-4">
             <Link href="/" className="relative flex items-center gap-2">
               <IconBackArrow

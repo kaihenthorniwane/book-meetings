@@ -1,5 +1,6 @@
 "use client";
 
+import UserEventsContextProvider from "@/context/user-sessions-context";
 import { type ReactNode, useEffect, useState } from "react";
 import EventContent, { type EventContentProps } from "./EventContent";
 import EventContentDesktop from "./EventContentDesktop";
@@ -25,12 +26,12 @@ export default function EventContentSwitcher({
   }, []);
 
   return (
-    <>
+    <UserEventsContextProvider>
       {isMobile ? (
         <EventContent {...props} otherEventHTML={nextAndPrevEventHTML} />
       ) : (
         <EventContentDesktop {...props} otherEventHTML={nextAndPrevEventHTML} />
       )}
-    </>
+    </UserEventsContextProvider>
   );
 }

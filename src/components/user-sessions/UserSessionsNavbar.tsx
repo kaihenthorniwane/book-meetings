@@ -1,3 +1,6 @@
+"use client";
+
+import UserEventsContextProvider from "@/context/user-sessions-context";
 import Link from "next/link";
 import ColorChangingGradient from "../content/ColorChangingGradient";
 import IconBackArrow from "../icons/IconBackArrow";
@@ -13,36 +16,38 @@ export default function UserSessionsNavbar({
   variant?: "sticky" | "fixed";
 }) {
   return (
-    <div
-      className={
-        "z-10 w-full top-0 flex justify-center md:px-10 md:py-0 px-5 py-3 mb-7 " +
-        (variant === "sticky" ? " sticky" : " fixed left-0 right-0")
-      }
-      style={{ color: color }}
-    >
+    <UserEventsContextProvider>
       <div
         className={
-          "flex items-center font-medium w-full max-w-screen-xl md:py-7 " +
-          (variant === "sticky" ? " justify-between" : " justify-end")
+          "z-10 w-full top-0 flex justify-center md:px-10 md:py-0 px-5 py-3 mb-7 " +
+          (variant === "sticky" ? " sticky" : " fixed left-0 right-0")
         }
+        style={{ color: color }}
       >
-        <Link
-          href={"/"}
+        <div
           className={
-            "flex gap-2 items-center" +
-            (variant === "sticky" ? "" : " invisible")
+            "flex items-center font-medium w-full max-w-screen-xl md:py-7 " +
+            (variant === "sticky" ? " justify-between" : " justify-end")
           }
         >
-          <IconBackArrow color={color} />
-          <span>Home</span>
-        </Link>
+          <Link
+            href={"/"}
+            className={
+              "flex gap-2 items-center" +
+              (variant === "sticky" ? "" : " invisible")
+            }
+          >
+            <IconBackArrow color={color} />
+            <span>Home</span>
+          </Link>
 
-        <UserSessionsCountButton variant="desktop" color={color} />
+          <UserSessionsCountButton variant="desktop" color={color} />
+        </div>
+        <ColorChangingGradient
+          color={bgColor}
+          className="absolute -z-10 top-0 left-0 right-0 rotate-180 h-24 w-full"
+        />
       </div>
-      <ColorChangingGradient
-        color={bgColor}
-        className="absolute -z-10 top-0 left-0 right-0 rotate-180 h-24 w-full"
-      />
-    </div>
+    </UserEventsContextProvider>
   );
 }

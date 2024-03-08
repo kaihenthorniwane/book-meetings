@@ -38,6 +38,9 @@ export type StyleSwitch = {
 export type ThemeStyleOptions = {
   componentStyleOne: CSSProperties;
   componentStyleTwo: CSSProperties;
+  CTABGStyleOne: CSSProperties;
+  CTABGStyleTwo: CSSProperties;
+  CTATextColors: StyleSwitch;
   bgColors: StyleSwitch;
   bodyColors: StyleSwitch;
   imageOpacities: StyleSwitch;
@@ -144,6 +147,21 @@ export default async function Page({ params }: { params: { id: string } }) {
     color: "var(--Brand-Black)",
   };
 
+  const CTABGStyleOne: CSSProperties = {
+    backgroundColor: defaultTextColor,
+    color: defaultTextColor,
+  };
+
+  const CTABGStyleTwo: CSSProperties = {
+    backgroundColor: "var(--Brand-Black)",
+    color: "var(--Brand-Black)",
+  };
+
+  const CTATextColors: StyleSwitch = {
+    styleTwo: "var(--Brand-White)",
+    styleOne: "rgb(" + dominantColor + ")",
+  };
+
   const bgColors: StyleSwitch = {
     styleTwo: "var(--Brand-White)",
     styleOne: "rgb(" + dominantColor + ")",
@@ -172,6 +190,9 @@ export default async function Page({ params }: { params: { id: string } }) {
   const themeStyleOptions: ThemeStyleOptions = {
     componentStyleOne,
     componentStyleTwo,
+    CTABGStyleOne,
+    CTABGStyleTwo,
+    CTATextColors,
     bgColors,
     bodyColors,
     imageOpacities,

@@ -1,4 +1,6 @@
-import { createContext, useReducer, type ReactNode } from "react";
+"use client";
+
+import { createContext, useContext, useReducer, type ReactNode } from "react";
 
 export type EventTime = {
   id: string;
@@ -70,7 +72,7 @@ function reducer(
       (eventReference) =>
         !(
           eventReference.eventID === eventReferenceToCheck.eventID &&
-          eventReference.eventID === eventReferenceToCheck.timeID
+          eventReference.timeID === eventReferenceToCheck.timeID
         )
     );
     return { ...state, eventReferences: filteredEvents };
@@ -98,4 +100,14 @@ export default function UserEventsContextProvider(
       {props.children}
     </UserEventsContext.Provider>
   );
+}
+
+export function useUserSessionsContext() {
+  const context = useContext(UserEventsContext);
+
+  if (context === null) {
+    throw new Error("Context is null");
+  }
+
+  return context;
 }
