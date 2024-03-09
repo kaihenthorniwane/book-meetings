@@ -1,4 +1,8 @@
-import { EventInfo } from "@/context/user-sessions-context";
+import {
+  useUserSessionsContext,
+  type EventInfo,
+} from "@/context/user-sessions-context";
+import { type FormEvent } from "react";
 import IconCalendarSmall from "../icons/IconCalendarSmall";
 import IconClockSmall from "../icons/IconClockSmall";
 
@@ -15,9 +19,34 @@ export default function BookASessionDrawer({
   parsedData,
   handleShowDrawer,
 }: BookASessionDrawerProps) {
+  const userEventsContextValue = useUserSessionsContext();
+
+  function handleForm(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const data = Object.fromEntries(formData) as {
+      sessionTime: string;
+      registeredName: string;
+      registeredEmail: string;
+    };
+    const eventID: string = parsedData.id;
+    const timeID: string = parsedData.times[parseInt(data.sessionTime)].id;
+    userEventsContextValue.addEventByID({ eventID: eventID, timeID: timeID });
+    handleShowDrawer();
+  }
+
   return (
-    <>
-      <form className="fixed left-0 right-0 bottom-0 flex flex-col px-5 pt-7 pb-5 bg-brandWhite rounded-t-3xl gap-7 text-brandBlack z-50">
+    <div
+      className="fixed left-0 right-0 bottom-0 top-0 z-[100] flex flex-col justify-end md:justify-center md:items-center bg-[rgba(0,0,0,0.5)]"
+      onClick={handleShowDrawer}
+    >
+      <form
+        onSubmit={handleForm}
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+        className=" flex flex-col px-5 pt-7 pb-5 bg-brandWhite rounded-t-3xl gap-7 text-brandBlack z-[200] md:max-w-xl md:rounded-4xl md:w-full"
+      >
         <div className="flex flex-col gap-3">
           <span className="text-4xl">Book A Session</span>
           <div className="flex gap-4 font-medium">
@@ -42,6 +71,8 @@ export default function BookASessionDrawer({
                 <div className="w-7 h-7 relative">
                   <input
                     type="radio"
+                    value={index}
+                    required
                     name="sessionTime"
                     className="appearance-none peer"
                   />
@@ -82,21 +113,24 @@ export default function BookASessionDrawer({
           <input
             type="text"
             name="registeredName"
+            required
             placeholder="Write name here"
             className="outline-none py-2 border-b-1 border-transparent focus:border-brandBlack"
           />
           <input
             type="email"
             name="registeredEmail"
+            required
             placeholder="Write email here"
             className="outline-none py-2 border-b-1 border-transparent focus:border-brandBlack"
           />
         </div>
 
-        <button
-          onClick={handleShowDrawer}
-          className="flex w-full transition-colors duration-500 relative rounded-full bg-brandBlack text-brandBlack"
-        >
+        <label className="flex w-full transition-colors duration-500 relative rounded-full bg-brandBlack text-brandBlack">
+          <input
+            type="submit"
+            className="opacity-0 absolute left-0 top-0 right-0 bottom-0 z-[100]  cursor-pointer"
+          />
           <div className="absolute left-0 top-0 right-0 bottom-0 flex justify-center items-center font-medium z-50 text-brandWhite">
             Confirm Booking
           </div>
@@ -129,12 +163,8 @@ export default function BookASessionDrawer({
           >
             <path d="M23 22.54V33.46C23 41.4329 23 45.4193 21.4238 48.4536C20.0955 51.0106 18.0106 53.0955 15.4536 54.4238C12.4193 56 7.97287 56 0 56L1.52588e-05 0C7.97289 0 12.4193 0 15.4536 1.57621C18.0106 2.90447 20.0955 4.98935 21.4238 7.54636C23 10.5807 23 14.5671 23 22.54Z" />
           </svg>
-        </button>
+        </label>
       </form>
-      <div
-        className="fixed left-0 top-0 right-0 bottom-0 z-30 bg-brandBlack opacity-50"
-        onClick={handleShowDrawer}
-      />
-    </>
+    </div>
   );
 }

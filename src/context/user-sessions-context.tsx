@@ -19,7 +19,7 @@ export type EventInfo = {
   times: EventTime[];
 };
 
-type BookedEventReference = {
+export type BookedEventReference = {
   eventID: string;
   timeID: string;
 };

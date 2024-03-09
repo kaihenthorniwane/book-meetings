@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
+import BookASessionDrawer from "../drawer/BookASessionDrawer";
 import IconCalendarSmall from "../icons/IconCalendarSmall";
 import IconClockSmall from "../icons/IconClockSmall";
 import UserSessionsNavbar from "../user-sessions/UserSessionsNavbar";
@@ -22,6 +24,10 @@ export default function EventContentDesktop({
     CTATextColors,
   } = themeStyleOptions;
 
+  const [showDrawer, setShowDrawer] = useState<boolean>(false);
+
+  const handleShowDrawer = (): void => setShowDrawer((prevValue) => !prevValue);
+
   return (
     <body
       className="text-xl flex flex-col items-center font-body text-brandBlack"
@@ -29,6 +35,14 @@ export default function EventContentDesktop({
         backgroundColor: bgColors["styleOne"],
       }}
     >
+      {showDrawer && (
+        <BookASessionDrawer
+          formattedDate={formattedDate}
+          differenceInHours={differenceInHours}
+          parsedData={parsedData}
+          handleShowDrawer={handleShowDrawer}
+        />
+      )}
       <UserSessionsNavbar
         color={componentStyleOne.color}
         bgColor={componentStyleOne.backgroundColor}
@@ -67,6 +81,7 @@ export default function EventContentDesktop({
               <button
                 className="flex w-full max-w-60 transition-colors duration-500 relative rounded-full "
                 style={CTABGStyleOne}
+                onClick={handleShowDrawer}
               >
                 <div
                   className="absolute left-0 top-0 right-0 bottom-0 flex justify-center items-center font-medium z-50"
