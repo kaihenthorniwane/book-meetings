@@ -114,7 +114,7 @@ export default function EventContent({
     };
   }, []);
 
-  const handleShowDrawer = (): void => setShowDrawer(true);
+  const handleShowDrawer = (): void => setShowDrawer((prevValue) => !prevValue);
 
   return (
     <body
@@ -130,6 +130,7 @@ export default function EventContent({
           formattedDate={formattedDate}
           differenceInHours={differenceInHours}
           parsedData={parsedData}
+          handleShowDrawer={handleShowDrawer}
         />
       )}
       <main

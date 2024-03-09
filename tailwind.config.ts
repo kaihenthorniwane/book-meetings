@@ -15,6 +15,9 @@ const config: Config = {
       fontSize: {
         "2.5xl": "1.75rem",
       },
+      borderWidth: {
+        "1": "0.0625rem",
+      },
       fontFamily: {
         body: ["indivisible", "sans-serif"],
       },

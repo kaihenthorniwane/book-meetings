@@ -183,6 +183,37 @@ let events: EventInfo[] = [
   },
 ];
 
+events = events.map((event) => ({
+  ...event,
+  times: [
+    ...event.times,
+    {
+      id: `${event.times[0].id}-1`,
+      start: new Date(
+        new Date(event.times[0].start).setHours(
+          event.times[0].start.getHours() + 1
+        )
+      ),
+      end: new Date(
+        new Date(event.times[0].end).setHours(event.times[0].end.getHours() + 1)
+      ),
+      isBooked: false,
+    },
+    {
+      id: `${event.times[0].id}-2`,
+      start: new Date(
+        new Date(event.times[0].start).setHours(
+          event.times[0].start.getHours() + 2
+        )
+      ),
+      end: new Date(
+        new Date(event.times[0].end).setHours(event.times[0].end.getHours() + 2)
+      ),
+      isBooked: false,
+    },
+  ],
+}));
+
 let userEvents: EventInfo[] = [];
 
 // function to get events
